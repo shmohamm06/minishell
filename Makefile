@@ -8,6 +8,8 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(LIB_DIR)/libft.a $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o $(NAME)
+	@touch infile
+	@touch outfile
 
 $(LIB_DIR)/libft.a:
 	@$(MAKE) -C $(LIB_DIR)
@@ -16,8 +18,6 @@ $(LIB_DIR)/libft.a:
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
-	@touch infile
-	@touch outfile
 
 clean:
 	@rm -f $(OBJS)

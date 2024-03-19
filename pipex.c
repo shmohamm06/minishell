@@ -6,29 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/19 13:20:53 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:00:28 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	cleanup(char **args, char *path, char **paths)
-{
-	int	i;
-
-	i = -1;
-	if (path)
-		free(path);
-	if (paths)
-	{
-		while (paths[++i])
-			free(paths[i]);
-		free(paths);
-	}
-	while (args[++i])
-		free(args[i]);
-	free(args);
-}
 
 void	child_process(int *fd, char *in_file, char **cmd, char **envpath)
 {
@@ -41,7 +23,7 @@ void	child_process(int *fd, char *in_file, char **cmd, char **envpath)
 	dup2(temp_file, STDIN_FILENO);
 	close(fd[0]);
 	execute(cmd, envpath);
-	cleanup(cmd, NULL, NULL);
+	ft_free(cmd);
 }
 
 void	parent_process(int *fd, char *out_file, char **cmd, char **envpath)
@@ -55,7 +37,7 @@ void	parent_process(int *fd, char *out_file, char **cmd, char **envpath)
 	dup2(temp_file, STDOUT_FILENO);
 	close(fd[1]);
 	execute(cmd, envpath);
-	cleanup(cmd, NULL, NULL);
+	ft_free(cmd);
 }
 
 int	main(int argc, char **argv, char **envp)
