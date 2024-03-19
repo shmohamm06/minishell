@@ -1,0 +1,14 @@
+total 152
+drwxr-xr-x  13 shmohamm  2023_abu-dhabi    442 Mar 19 13:29 .
+drwxr-xr-x@ 12 shmohamm  2023_abu-dhabi    408 Mar 19 10:46 ..
+drwxr-xr-x   9 shmohamm  2023_abu-dhabi    306 Mar 19 10:46 .git
+-rw-r--r--   1 shmohamm  2023_abu-dhabi    549 Mar 19 13:29 Makefile
+-rw-r--r--   1 shmohamm  2023_abu-dhabi      0 Mar 19 13:29 infile
+drwxr-xr-x  91 shmohamm  2023_abu-dhabi   3094 Mar 19 13:29 libft
+-rwxr-xr-x   1 shmohamm  2023_abu-dhabi  50888 Mar 19 13:29 minishell
+-rw-r--r--   1 shmohamm  2023_abu-dhabi   1402 Mar 19 13:20 minishell.h
+-rw-r--r--   1 shmohamm  2023_abu-dhabi      0 Mar 19 13:29 outfile
+-rw-r--r--   1 shmohamm  2023_abu-dhabi   2259 Mar 19 13:20 pipex.c
+-rw-r--r--   1 shmohamm  2023_abu-dhabi   2560 Mar 19 13:29 pipex.o
+-rw-r--r--   1 shmohamm  2023_abu-dhabi   1825 Mar 19 13:28 pipex_utils.c
+-rw-r--r--   1 shmohamm  2023_abu-dhabi   2028 Mar 19 13:29 pipex_utils.o
