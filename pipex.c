@@ -6,13 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/19 14:00:28 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:36:32 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	child_process(int *fd, char *in_file, char **cmd, char **envpath)
+void	child_process(int *fd, char *in_file, char **cmd1, char **envpath)
 {
 	int	temp_file;
 
@@ -22,11 +22,11 @@ void	child_process(int *fd, char *in_file, char **cmd, char **envpath)
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(temp_file, STDIN_FILENO);
 	close(fd[0]);
-	execute(cmd, envpath);
-	ft_free(cmd);
+	execute(cmd1, envpath);
+	ft_free(cmd1);
 }
 
-void	parent_process(int *fd, char *out_file, char **cmd, char **envpath)
+void	parent_process(int *fd, char *out_file, char **cmd2, char **envpath)
 {
 	int	temp_file;
 
@@ -36,8 +36,8 @@ void	parent_process(int *fd, char *out_file, char **cmd, char **envpath)
 	dup2(fd[0], STDIN_FILENO);
 	dup2(temp_file, STDOUT_FILENO);
 	close(fd[1]);
-	execute(cmd, envpath);
-	ft_free(cmd);
+	execute(cmd2, envpath);
+	ft_free(cmd2);
 }
 
 int	main(int argc, char **argv, char **envp)

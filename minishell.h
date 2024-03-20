@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:49:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/19 14:00:31 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/20 10:36:44 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free(char **argv);
 char	*join_paths(char *dir, char *arg);
 char	*find_path(char *arg, char **envp);
 void	execute(char **arg, char **envp);
-void	child_process(int *fd, char *in_file, char **cmd, char **envpath);
-void	parent_process(int *fd, char *out_file, char **cmd, char **envpath);
+void	child_process(int *fd, char *in_file, char **cmd1, char **envpath);
+void	parent_process(int *fd, char *out_file, char **cmd2, char **envpath);
 
 #endif
