@@ -6,11 +6,20 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/20 10:36:32 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:42:24 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	here_doc(char **argv)
+{
+	int		fd[2];
+	pid_t	pid;
+
+	if(pipe(fd) == -1)
+		exit
+}
 
 void	child_process(int *fd, char *in_file, char **cmd1, char **envpath)
 {
@@ -45,8 +54,10 @@ int	main(int argc, char **argv, char **envp)
 	pid_t	pid;
 	int		fd[2];
 
-	if (argc == 5)
+	if (argc == 5 || argc == 6)
 	{
+		if (ft_strncmp(argv[1], "here_doc") == 0)
+			here_doc(argv);
 		if (pipe(fd) == -1)
 			ft_error();
 		pid = fork();
