@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:15:32 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/21 12:16:28 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/26 22:09:43 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	input_here_doc(char **argv, int *fd)
 	while (1)
 	{
 		temp = get_next_line(0);
+		// temp = read_line(">");
 		if (ft_strncmp(temp, argv[2], ft_strlen(argv[2])) == 0)
 		{
 			free(temp);
