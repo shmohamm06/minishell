@@ -32,17 +32,7 @@ $(NAME): $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)
 	@$(AR) $(NAME) $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)
 	@ranlib $(NAME)
 	@echo ""
-	@echo "$(GREEN) ██▓     ██▓ ▄▄▄▄     █████▒▄▄▄█████▓"
-	@echo "▓██▒    ▓██▒▓█████▄ ▓██   ▒ ▓  ██▒ ▓▒"
-	@echo "▒██░    ▒██▒▒██▒ ▄██▒████ ░ ▒ ▓██░ ▒░"
-	@echo "▒██░    ░██░▒██░█▀  ░▓█▒  ░ ░ ▓██▓ ░ "
-	@echo "░██████▒░██░░▓█  ▀█▓░▒█░      ▒██▒ ░ "
-	@echo "░ ▒░▓  ░░▓  ░▒▓███▀▒ ▒ ░      ▒ ░░   "
-	@echo "░ ░ ▒  ░ ▒ ░▒░▒   ░  ░          ░    "
-	@echo "  ░ ░    ▒ ░ ░    ░  ░ ░      ░      "
-	@echo "    ░  ░ ░   ░                       "
-	@echo "                  ░                  "
-	@echo "Created: $(words $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)) object file(s) for Libft"
+	@echo "$(GREEN)Created: $(words $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)) object file(s) for Libft"
 	@echo "Created: $(NAME)$(RESET)"
 	
 bonus: $(OBJ_FILES_BONUS)
@@ -51,17 +41,7 @@ bonus: $(OBJ_FILES_BONUS)
 clean: clean
 	@rm -f $(NAME) $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS) *~
 	@echo ""
-	@echo "$(YELLOW) ██▓     ██▓ ▄▄▄▄     █████▒▄▄▄█████▓"
-	@echo "▓██▒    ▓██▒▓█████▄ ▓██   ▒ ▓  ██▒ ▓▒"
-	@echo "▒██░    ▒██▒▒██▒ ▄██▒████ ░ ▒ ▓██░ ▒░"
-	@echo "▒██░    ░██░▒██░█▀  ░▓█▒  ░ ░ ▓██▓ ░ "
-	@echo "░██████▒░██░░▓█  ▀█▓░▒█░      ▒██▒ ░ "
-	@echo "░ ▒░▓  ░░▓  ░▒▓███▀▒ ▒ ░      ▒ ░░   "
-	@echo "░ ░ ▒  ░ ▒ ░▒░▒   ░  ░          ░    "
-	@echo "  ░ ░    ▒ ░ ░    ░  ░ ░      ░      "
-	@echo "    ░  ░ ░   ░                       "
-	@echo "                  ░                  "
-	@echo "Removed: $(words $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)) object file(s) from Libft"
+	@echo "$(YELLOW)Removed: $(words $(OBJ_FILES_MANDATORY) $(OBJ_FILES_BONUS)) object file(s) from Libft"
 	@echo "Removed: $(NAME)$(RESET)"
 
 fclean: clean
