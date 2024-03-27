@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:23 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/26 22:35:45 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:12:54 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**ft_arrdup(char **arr)
 		rtn[i] = ft_strdup(arr[i]);
 		if (rtn[i] == NULL)
 		{
-			free_arr(rtn);
+			ft_free(rtn);
 			return (rtn);
 		}
 		i++;
@@ -53,4 +53,16 @@ int	find_pwd(t_data *mini)
 		i++;
 	}
 	return (1);
+}
+
+void	change_path(t_data *mini)
+{
+	char	*tmp;
+
+	find_pwd(mini);
+	tmp = ft_strdup(mini->pwd);
+	free(mini->old_pwd);
+	mini->old_pwd = tmp;
+	free(mini->pwd);
+	mini->pwd = getcwd(NULL, sizeof(NULL));
 }

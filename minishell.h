@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:49:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/26 23:14:51 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:12:56 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "./libft/libft.h"
 # include <fcntl.h>
-// # include <readline/history.h>
-// # include <readline/readline.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -28,7 +28,6 @@ typedef struct s_data
 	char	*args;
 	char	*pwd;
 	char	*old_pwd;
-	int		(*builtin_func)(t_data *);
 }			t_data;
 
 // utils
@@ -41,6 +40,7 @@ void		execute(char **arg, char **envp);
 // utils2
 char		**ft_arrdup(char **arr);
 int			find_pwd(t_data *mini);
+void		change_path(t_data *mini);
 
 // here_doc & process
 void		here_doc(char **argv);
@@ -51,7 +51,7 @@ void		parent_process(int *fd, char *out_file, char **cmd2,
 				char **envpath);
 
 // built-ins
-
+int			builtin_check(char **argv, t_data *mini);
 // ft_echo
 int			ft_echo(char **argv);
 void		print_lines(int i, char **str, int out);

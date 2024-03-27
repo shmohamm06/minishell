@@ -6,27 +6,24 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:10:10 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/26 23:12:03 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:18:14 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	(*builtin_arr(char *str))(t_data *mini)
+int	builtin_check(char **argv, t_data *mini)
 {
-	static void	*builtins[7][2] = {{"echo", ft_echo}, {"cd", ft_cd}, {"pwd",
-		ft_pwd}, {"env", ft_env}};
-	int			i;
-
-	i = 0;
-	while (i < 7)
+	if (argv[1])
 	{
-		if (str)
-		{
-			if (!ft_strncmp(builtins[i][0], str, ft_strlen((builtins[i][0]))))
-				return (builtins[i][1]);
-		}
-		i++;
+		if (ft_strncmp(argv[1], "echo", 5) == 0)
+			ft_echo(argv);
+		else if (ft_strncmp(argv[1], "cd", 3) == 0)
+			ft_cd(mini);
+		else if (ft_strncmp(argv[1], "pwd", 4) == 0)
+			ft_pwd(mini);
+		else if (ft_strncmp(argv[1], "env", 4) == 0)
+			ft_env(mini);
 	}
-	return (NULL);
+	return (0);
 }

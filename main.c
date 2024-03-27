@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/26 23:14:10 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/03/27 11:19:13 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		i;
 	int		fd[2];
 	t_data	*mini;
 
-	i = 0;
-	while (i < 7)
-	{
-		if (argv[1])
-		{
-			if (!ft_strncmp(builtins[i][0], argv[1], ft_strlen(builtins[i][0])))
-			{
-				(builtin_func)(t_data, struct s_simple_cmds) = builtins[i][1];
-				return (builtin_func(mini, simple_cmds));
-			}
-		}
-		i++;
-	}
+	mini = NULL;
 	if (argc == 5 || argc == 6)
 	{
 		mini->en_var = ft_arrdup(envp);
+		builtin_check(argv, mini);
 		if (argc == 6)
 		{
 			if (ft_strncmp(argv[1], "<<", 9) == 0 && ft_strncmp(argv[argc - 1],

@@ -7,7 +7,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIB_DIR = libft
 
-SRCS = main.c utils.c utils2.c ft_echo.c ft_env.c ft_cd.c ft_pwd here_doc_and_process.c
+SRCS = main.c utils.c utils2.c built_ins.c ft_echo.c ft_env.c ft_cd.c ft_pwd.c here_doc_and_process.c
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(LIB_DIR)/libft.a $(OBJS)
