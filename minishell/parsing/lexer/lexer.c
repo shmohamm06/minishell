@@ -1,5 +1,7 @@
 #include "../lexer.h"
 
+
+
 t_lexer	*ft_lexernew(char *str, int token)
 {
 	t_lexer	*new_element;

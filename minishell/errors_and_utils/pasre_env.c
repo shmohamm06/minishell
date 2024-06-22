@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:50:19 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/20 16:53:21 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 13:06:42 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors_and_utils.h"
+#include "../includes/errors_and_utils.h"
 
 char	*find_path(char **envp)
 {

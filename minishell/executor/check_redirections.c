@@ -6,17 +6,17 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:17:27 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/03 10:31:32 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 13:12:01 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "../includes/executor.h"
 
 int	check_append_outfile(t_lexer *redirections)
 {
 	int	fd;
 
-	if (redirections->token == GREAT_GREAT)
+	if (redirections->token == append)
 		fd = open(redirections->str,
 				O_CREAT | O_RDWR | O_APPEND,
 				0644);
@@ -75,18 +75,18 @@ int	check_redirections(t_simple_cmds *cmd)
 	start = cmd->redirections;
 	while (cmd->redirections)
 	{
-		if (cmd->redirections->token == LESS)
+		if (cmd->redirections->token == input)
 		{
 			if (handle_infile(cmd->redirections->str))
 				return (EXIT_FAILURE);
 		}
-		else if (cmd->redirections->token == GREAT
-			|| cmd->redirections->token == GREAT_GREAT)
+		else if (cmd->redirections->token == output
+			|| cmd->redirections->token == append)
 		{
 			if (handle_outfile(cmd->redirections))
 				return (EXIT_FAILURE);
 		}
-		else if (cmd->redirections->token == LESS_LESS)
+		else if (cmd->redirections->token == heredoc)
 		{
 			if (handle_infile(cmd->hd_file_name))
 				return (EXIT_FAILURE);

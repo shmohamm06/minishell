@@ -1,5 +1,6 @@
 #include "lexer.h"
 
+
 t_lexer	*ft_lexerclear_one(t_lexer **lst)
 {
 	if ((*lst)->str)
@@ -53,7 +54,7 @@ void	ft_lexerdelone(t_lexer **lst, int key)
 
 void	ft_lexerclear(t_lexer **lst)
 {
-	t_lexer	*tmp;
+	t_lexer *tmp;
 
 	if (!*lst)
 		return ;

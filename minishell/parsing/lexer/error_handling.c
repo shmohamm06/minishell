@@ -1,5 +1,7 @@
 #include "../lexer.h"
 
+
+
 void	parser_error(t_tools *tools, t_lexer *lexer_list)
 {
 	ft_lexerclear(&lexer_list);

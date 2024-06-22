@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:31:13 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/21 14:18:20 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:23:00 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "../includes/executor.h"
 
 int	loop_if_dollar_sign(t_tools *tools, char *str, char **tmp, int j)
 {

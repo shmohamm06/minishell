@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:50:37 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/03 11:15:19 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:23:00 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "../includes/executor.h"
 
 int	find_cmd(t_simple_cmds *cmd, t_tools *mini)
 {

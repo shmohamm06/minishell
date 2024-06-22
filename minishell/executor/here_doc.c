@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:35:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/13 19:17:55 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 13:03:25 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "../includes/executor.h"
 
 int	create_heredoc(t_lexer *heredoc, bool quotes, t_tools *tools,
 		char *file_name)
@@ -80,7 +80,7 @@ int	send_heredoc(t_tools *tools, t_simple_cmds *cmd)
 	sl = EXIT_SUCCESS;
 	while (cmd->redirections)
 	{
-		if (cmd->redirections->token == LESS_LESS)
+		if (cmd->redirections->token == heredoc)
 		{
 			if (cmd->hd_file_name)
 				free(cmd->hd_file_name);

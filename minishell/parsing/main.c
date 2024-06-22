@@ -1,5 +1,6 @@
 #include "lexer.h"
 
+
 void	print_lexer_list(t_lexer *list)
 {
 	while (list)
@@ -44,7 +45,7 @@ void print_commands(t_simple_cmds *cmds)
 int main(void)
 {
     t_tools tools;
-    char *input = "echo 'Hello, World!' >  < output.txt";  // Static input for testing
+    char *input = "echo 'Hello, World!' >   output.txt";  // Static input for testing
 
     tools.lexer_list = NULL;
     tools.simple_cmds = NULL;

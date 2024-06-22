@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 14:16:07 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/21 15:00:43 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/22 11:24:32 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "./built_ins/built_ins.h"
+# include "minishell.h"
 
 # define HEREDOC_MSG	"\033[1;34m> \033[0m"
 

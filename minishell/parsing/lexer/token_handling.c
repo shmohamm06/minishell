@@ -1,5 +1,7 @@
 #include "../lexer.h"
 
+
+
 t_tokens	check_token(int c)
 {
 	static int	token_arr[3][2] = {{'|', PIPE}, {'>', output}, {'<', input}};

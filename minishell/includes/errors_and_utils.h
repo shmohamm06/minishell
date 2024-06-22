@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   errors_and_utils.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:02:48 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/21 14:44:01 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/22 11:20:52 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERRORS_AND_UTILS_H
 # define ERRORS_AND_UTILS_H
 
-# include "./built_ins/built_ins.h"
+# include "minishell.h"
 
 // utils_and_errors.c
 int				cmd_not_found(char *str);

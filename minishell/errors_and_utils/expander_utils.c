@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:52:40 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/13 19:54:29 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:23:46 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors_and_utils.h"
+#include "../includes/errors_and_utils.h"
 
 size_t	dollar_sign(char *str)
 {

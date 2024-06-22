@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:18:23 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/09 10:48:58 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 13:03:25 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "../includes/executor.h"
 
 t_simple_cmds	*call_expander(t_tools *tools, t_simple_cmds *cmd)
 {
@@ -20,7 +20,7 @@ t_simple_cmds	*call_expander(t_tools *tools, t_simple_cmds *cmd)
 	start = cmd->redirections;
 	while (cmd->redirections)
 	{
-		if (cmd->redirections->token != LESS_LESS)
+		if (cmd->redirections->token != heredoc)
 			cmd->redirections->str = expander_str(tools,
 					cmd->redirections->str);
 		cmd->redirections = cmd->redirections->next;

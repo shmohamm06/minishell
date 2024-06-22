@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 12:17:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/15 13:26:21 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:20:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_ins.h"
+#include "../includes/built_ins.h"
 
 int	check_if_var_exists(t_tools *tools, char *str)
 {

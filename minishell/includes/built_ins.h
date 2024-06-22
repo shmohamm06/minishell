@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:49:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/21 14:44:22 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/22 12:55:17 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_INS_H
 # define BUILT_INS_H
 
-# include "../libft/libft.h"
+# include "minishell.h"
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -25,66 +25,6 @@
 # include <unistd.h>
 
 # define READLINE_MSG "\033[1;36mminishell\033[34m$ \033[0m"
-
-typedef struct s_simple_cmds
-{
-	char					**args;
-	// Add other fields as needed
-}							t_simple_cmds;
-
-typedef struct s_global
-{
-	int						error_num;
-	int						stop_heredoc;
-	int						in_cmd;
-	int						in_heredoc;
-}							t_global;
-
-t_global					g_global;
-
-typedef enum s_tokens
-{
-	PIPE = 1,
-	GREAT,
-	GREAT_GREAT,
-	LESS,
-	LESS_LESS,
-}							t_tokens;
-
-typedef struct s_lexer
-{
-	char					*str;
-	t_tokens				token;
-	int						i;
-	struct s_lexer			*next;
-	struct s_lexer			*prev;
-}							t_lexer;
-
-typedef struct s_tools
-{
-	char					*args;
-	char					**paths;
-	char					**envp;
-	struct s_simple_cmds	*simple_cmds;
-	t_lexer					*lexer_list;
-	char					*pwd;
-	char					*old_pwd;
-	int						pipes;
-	int						*pid;
-	bool					heredoc;
-	bool					reset;
-}							t_tools;
-
-typedef struct s_simple_cmds
-{
-	char					**str;
-	int						num_redirections;
-	int						(*builtin)(t_tools *, struct s_simple_cmds *);
-	char					*hd_file_name;
-	t_lexer					*redirections;
-	struct s_simple_cmds	*next;
-	struct s_simple_cmds	*prev;
-}							t_simple_cmds;
 
 // built-ins.c
 int	(*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd);

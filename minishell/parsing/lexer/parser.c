@@ -1,5 +1,7 @@
 #include "../lexer.h"
 
+
+
 t_simple_cmds *initialize_cmd(t_parser_tools *parser_tools)
 {
     char **str;

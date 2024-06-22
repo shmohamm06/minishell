@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:40:21 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/31 11:38:37 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:20:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "built_ins.h"
+#include "../includes/built_ins.h"
 
 void	print_input_string(int i, char **str, int out)
 {

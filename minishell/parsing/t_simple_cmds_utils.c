@@ -1,8 +1,8 @@
 #include "lexer.h"
 
-
 t_simple_cmds	*ft_simple_cmdsnew(char **str,
-	int num_redirections, t_lexer *redirections)
+									int num_redirections,
+									t_lexer *redirections)
 {
 	t_simple_cmds	*new_element;
 
@@ -72,7 +72,7 @@ void	ft_simple_cmdsclear(t_simple_cmds **lst)
 t_simple_cmds	*ft_simple_cmdsfirst(t_simple_cmds *map)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!map)
 		return (NULL);

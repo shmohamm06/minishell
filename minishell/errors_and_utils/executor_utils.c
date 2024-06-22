@@ -6,11 +6,11 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:29:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/04/02 11:14:23 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 11:23:51 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors_and_utils.h"
+#include "../includes/errors_and_utils.h"
 
 char	*join_splitted_str(char **split_str)
 {

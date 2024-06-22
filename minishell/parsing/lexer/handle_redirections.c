@@ -1,5 +1,6 @@
 #include "../lexer.h"
 
+
 char	*join_heredoc(char *str1, char *str2)
 {
 	char	*ret;

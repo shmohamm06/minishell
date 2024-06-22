@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_and_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:02:14 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/21 14:43:43 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/22 13:06:46 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors_and_utils.h"
+#include "../includes/errors_and_utils.h"
 
 int	cmd_not_found(char *str)
 {
