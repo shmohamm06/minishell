@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:29:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:23:51 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:59:18 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/errors_and_utils.h"
+// #include "../includes/errors_and_utils.h"
+# include "../includes/minishell.h"
+
 
 char	*join_splitted_str(char **split_str)
 {
@@ -36,7 +38,7 @@ char	**resplit_str(char **str)
 	char	**new_str;
 	char	*joined_str;
 
-	joined_str = join_split_str(str);
+	joined_str = join_splitted_str(str);
 	new_str = ft_split(joined_str, ' ');
 	free(joined_str);
 	return (new_str);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 10:35:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 13:03:25 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:35:32 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
+# include "../includes/minishell.h"
 
 int	create_heredoc(t_lexer *heredoc, bool quotes, t_tools *tools,
 		char *file_name)

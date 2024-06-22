@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   handle_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:50:37 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:23:00 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:39:47 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/executor.h"
+// #include "../includes/executor.h"
+# include "../includes/minishell.h"
+
 
 int	find_cmd(t_simple_cmds *cmd, t_tools *mini)
 {

@@ -1,5 +1,4 @@
-#include "lexer.h"
-
+# include "../includes/minishell.h"
 
 t_lexer	*ft_lexerclear_one(t_lexer **lst)
 {

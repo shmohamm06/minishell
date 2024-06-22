@@ -1,4 +1,6 @@
-#include "../lexer.h"
+# include "../../includes/minishell.h"
+
+
 
 int	skip_quoted_segment(const char *input, unsigned int start_index,
 		char quote_char)

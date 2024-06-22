@@ -1,4 +1,4 @@
-#include "lexer.h"
+# include "../includes/minishell.h"
 
 t_simple_cmds	*ft_simple_cmdsnew(char **str,
 									int num_redirections,

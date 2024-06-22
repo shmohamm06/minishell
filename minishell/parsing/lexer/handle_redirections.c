@@ -1,4 +1,6 @@
-#include "../lexer.h"
+# include "../../includes/minishell.h"
+
+
 
 
 char	*join_heredoc(char *str1, char *str2)

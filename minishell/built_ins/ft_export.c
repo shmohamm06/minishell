@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 12:17:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:20:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:45:35 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/built_ins.h"
+// #include "../includes/built_ins.h"
+# include "../includes/minishell.h"
+
 
 int	check_if_var_exists(t_tools *tools, char *str)
 {
@@ -106,17 +108,17 @@ int	ft_export(t_tools *mini, t_simple_cmds *cmd)
 
 	i = 1;
 	if (!cmd->str[1] || cmd->str[1][0] == '\0')
-		mini_env(mini, cmd);
+		ft_env(mini);
 	else
 	{
 		while (cmd->str[i])
 		{
-			if (check_parameter(cmd->str[i]) == 0 && variable_exist(mini,
+			if (check_parameter(cmd->str[i]) == 0 && check_if_var_exists(mini,
 					cmd->str[i]) == 0)
 			{
 				if (cmd->str[i])
 				{
-					tmp = add_var(mini->envp, cmd->str[i]);
+					tmp = add_variable(mini->envp, cmd->str[i]);
 					free_arr(mini->envp);
 					mini->envp = tmp;
 				}

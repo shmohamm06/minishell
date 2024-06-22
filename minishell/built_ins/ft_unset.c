@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:33:53 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:20:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:40:28 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/built_ins.h"
+// #include "../includes/built_ins.h"
+# include "../includes/minishell.h"
+
 
 char	**whileloop_del_var(char **arr, char **rtn, char *str)
 {

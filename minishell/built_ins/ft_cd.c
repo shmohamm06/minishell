@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:41:41 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:20:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:00:22 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/built_ins.h"
+// #include "../includes/built_ins.h"
+#include "../includes/minishell.h"
 
 char	*find_path_ret(char *str, t_tools *mini)
 {
@@ -74,9 +75,9 @@ int	ft_cd(t_tools *mini, t_simple_cmds *cmd)
 	int	ret;
 
 	if (!cmd->str[1])
-		ret = specific_path(mini, "HOME=");
+		ret = specific_path("HOME=", mini);
 	else if (ft_strncmp(cmd->str[1], "-", 1) == 0)
-		ret = specific_path(mini, "OLDPWD=");
+		ret = specific_path("OLDPWD=", mini);
 	else
 	{
 		ret = chdir(cmd->str[1]);

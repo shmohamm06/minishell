@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 23:10:10 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 11:20:19 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/22 17:40:09 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/built_ins.h"
+// #include "../includes/built_ins.h"
+# include "../includes/minishell.h"
+
 
 int	(*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd)
 {
@@ -31,4 +33,3 @@ int	(*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd)
 	}
 	return (NULL);
 }
-

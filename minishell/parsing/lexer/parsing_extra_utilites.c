@@ -1,4 +1,5 @@
-#include "../lexer.h"
+# include "../../includes/minishell.h"
+
 
 
 
@@ -59,17 +60,4 @@ void	*ft_calloc(size_t count, size_t size)
 		return (0);
 	ft_bzero(ret, count * size);
 	return (ret);
-}
-
-void	*ft_bzero(void *str, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((char *)str)[i] = '\0';
-		i++;
-	}
-	return (str);
 }
