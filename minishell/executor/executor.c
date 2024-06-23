@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:18:23 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:39:41 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:03:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/executor.h"
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 t_simple_cmds	*call_expander(t_tools *tools, t_simple_cmds *cmd)
 {

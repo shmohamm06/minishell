@@ -1,4 +1,16 @@
-# include "../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_lexer_clear_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:15:04 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:15:07 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/minishell.h"
 
 t_lexer	*ft_lexerclear_one(t_lexer **lst)
 {
@@ -53,7 +65,7 @@ void	ft_lexerdelone(t_lexer **lst, int key)
 
 void	ft_lexerclear(t_lexer **lst)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	if (!*lst)
 		return ;

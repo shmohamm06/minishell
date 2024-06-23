@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 11:17:26 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 18:44:15 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:16:37 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ typedef struct s_global
 }			t_global;
 
 t_global	g_global;
-
-int			find_matching_quote(char *line, int i, int *num_del, int del);
-int			count_quotes(char *line);
 
 // typedef enum e_tokens
 // {

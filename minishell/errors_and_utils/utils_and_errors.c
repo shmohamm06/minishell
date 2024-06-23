@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_and_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:02:14 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:39:55 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:06:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/errors_and_utils.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 int	cmd_not_found(char *str)
 {
@@ -42,7 +40,7 @@ int	unset_error(t_simple_cmds *simple_cmd)
 			return (EXIT_FAILURE);
 		}
 	}
-	if (check_equal_sign(simple_cmd->str[1]) != 0)
+	if (equal_sign(simple_cmd->str[1]) != 0)
 	{
 		ft_putendl_fd("minishell: unset: not a valid identifier",
 			STDERR_FILENO);
@@ -50,7 +48,6 @@ int	unset_error(t_simple_cmds *simple_cmd)
 	}
 	return (EXIT_SUCCESS);
 }
-
 
 int	export_error(char *c)
 {

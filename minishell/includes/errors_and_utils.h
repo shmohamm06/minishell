@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_and_utils.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:02:48 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 18:35:23 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:17:01 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		export_error(char *c);
 // executor_utils.c
 char	*join_splitted_str(char **split_str);
 char	**resplit_str(char **str);
-
+int		find_matching_quote(char *line, int i, int *num_del, int del);
+int		count_quotes(char *line);
 // expander_utils.c
 int		after_dol_lenght(char *str, int j);
 size_t	quotes_lenght(char *str);

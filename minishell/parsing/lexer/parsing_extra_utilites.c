@@ -1,7 +1,16 @@
-# include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_extra_utilites.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:13:19 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:13:20 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
+#include "../../includes/minishell.h"
 
 t_parser_tools	init_parser_tools(t_lexer *lexer_list, t_tools *tools)
 {

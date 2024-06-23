@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:41:41 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 18:00:22 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:00:36 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/built_ins.h"
 #include "../includes/minishell.h"
 
 char	*find_path_ret(char *str, t_tools *mini)

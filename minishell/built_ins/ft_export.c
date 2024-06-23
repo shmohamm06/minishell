@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 12:17:39 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:45:35 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:06:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/built_ins.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 int	check_if_var_exists(t_tools *tools, char *str)
 {
 	int	i;
 
 	i = 0;
-	if (str[check_equal_sign(str)] == '\"')
+	if (str[equal_sign(str)] == '\"')
 		delete_quotes(str, '\"');
-	if (str[check_equal_sign(str)] == '\'')
+	if (str[equal_sign(str)] == '\'')
 		delete_quotes(str, '\'');
 	while (tools->envp[i])
 	{
 		if (ft_strncmp(tools->envp[i], str,
-				check_equal_sign(tools->envp[i])) == 0)
+				equal_sign(tools->envp[i])) == 0)
 		{
 			free(tools->envp[i]);
 			tools->envp[i] = ft_strdup(str);
@@ -44,7 +42,7 @@ int	check_parameter(char *str)
 	i = 0;
 	if (ft_isdigit(str[0]))
 		return (export_error(str));
-	if (check_equal_sign(str) == 0)
+	if (equal_sign(str) == 0)
 		return (EXIT_FAILURE);
 	if (str[0] == '=')
 		return (export_error(str));
@@ -87,9 +85,9 @@ char	**add_variable(char **arr, char *str)
 	size_t	i;
 
 	i = 0;
-	if (str[check_equal_sign(str)] == '\"')
+	if (str[equal_sign(str)] == '\"')
 		delete_quotes(str, '\"');
-	if (str[check_equal_sign(str)] == '\'')
+	if (str[equal_sign(str)] == '\'')
 		delete_quotes(str, '\'');
 	while (arr[i] != NULL)
 		i++;

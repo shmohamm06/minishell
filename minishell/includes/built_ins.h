@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:49:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:05:33 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:06:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	(*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd);
 // built_utils.c
 int							find_pwd(t_tools *mini);
 void						change_path(t_tools *mini);
-size_t						check_equal_sign(char *str);
+size_t						equal_sign(char *str);
 char						*delete_quotes_value(char *str);
 int							check_valid_identifier(char c);
 

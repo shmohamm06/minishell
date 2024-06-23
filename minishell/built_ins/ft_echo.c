@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 21:40:21 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:40:18 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:01:42 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/built_ins.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 void	print_input_string(int i, char **str, int out)
 {

@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pasre_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:50:19 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:39:57 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:02:38 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/errors_and_utils.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 char	*find_path(char **envp)
 {

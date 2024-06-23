@@ -1,6 +1,16 @@
-# include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:13:45 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:13:46 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
+#include "../../includes/minishell.h"
 
 int	skip_quoted_segment(const char *input, unsigned int start_index,
 		char quote_char)

@@ -1,7 +1,16 @@
-# include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_redirections.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:10:41 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:10:47 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
+#include "../../includes/minishell.h"
 
 char	*join_heredoc(char *str1, char *str2)
 {

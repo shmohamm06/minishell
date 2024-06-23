@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:33:53 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:40:28 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:06:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/built_ins.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 char	**whileloop_del_var(char **arr, char **rtn, char *str)
 {
@@ -23,8 +21,8 @@ char	**whileloop_del_var(char **arr, char **rtn, char *str)
 	j = 0;
 	while (arr[i] != NULL)
 	{
-		if (!(ft_strncmp(arr[i], str, check_equal_sign(arr[i]) - 1) == 0
-				&& str[check_equal_sign(arr[i])] == '\0'
+		if (!(ft_strncmp(arr[i], str, equal_sign(arr[i]) - 1) == 0
+				&& str[equal_sign(arr[i])] == '\0'
 				&& arr[i][ft_strlen(str)] == '='))
 		{
 			rtn[j] = ft_strdup(arr[i]);

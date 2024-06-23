@@ -1,14 +1,23 @@
-# include "../../includes/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:11:00 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:11:36 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
-
+#include "../../includes/minishell.h"
 
 t_lexer	*ft_lexernew(char *str, int token)
 {
-	t_lexer	*new_element;
-	static int	i = 0;
+	t_lexer		*new_element;
+	static int	i;
 
+	i = 0;
 	new_element = (t_lexer *)malloc(sizeof(t_lexer));
 	if (!new_element)
 		return (0);

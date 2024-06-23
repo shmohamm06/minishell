@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:36:19 by wyaseen           #+#    #+#             */
-/*   Updated: 2024/06/22 18:36:46 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:43:58 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	parser_error(t_tools *tools, t_lexer *lexer_list)
 {
 	ft_lexerclear(&lexer_list);
 	reset_tools(tools);
-//	return (EXIT_FAILURE);
-
 }
+	// return (EXIT_FAILURE);
 
 int	parser_double_token_error(t_tools *tools, t_lexer *lexer_list,
 	t_tokens token)
@@ -46,33 +45,8 @@ void	lexer_error(t_tools *tools)
 {
 	ft_lexerclear(&tools->lexer_list);
 	reset_tools(tools);
-	//return (EXIT_FAILURE);
 }
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void	ft_putendl_fd(char *s, int fd)
-{
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
-}
+	// return (EXIT_FAILURE);
 
 // void reset_tools(t_tools *tools) {
 //     // Free the command line arguments if they were dynamically allocated
@@ -89,7 +63,8 @@ void	ft_putendl_fd(char *s, int fd)
 //     //}
 
 //     // Simple commands cleanup
-//     ft_simple_cmdsclear(&tools->simple_cmds); // Assuming this function exists and does the comprehensive cleanup
+//     ft_simple_cmdsclear(&tools->simple_cmds);
+// Assuming this function exists and does the comprehensive cleanup
 
 //     // Lexer list cleanup - if it's different from the parser's lexer list
 //     ft_lexerclear(&tools->lexer_list);
@@ -109,7 +84,6 @@ void	ft_putendl_fd(char *s, int fd)
 //     tools->reset = false;
 //     tools->pipes = 0;
 // }
-
 
 // int	export_error(char *c)
 // {

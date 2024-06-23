@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:17:27 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:39:35 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:03:24 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/executor.h"
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 int	check_append_outfile(t_lexer *redirections)
 {

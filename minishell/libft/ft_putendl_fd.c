@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:24:31 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:41:50 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/23 11:09:39 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s == NULL)
-		return ;
-	if (fd < 0)
-		return ;
-	while (*s)
-	{
-		write(fd, s, 1);
-		s++;
-	}
-	write(fd, "\n", 1);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

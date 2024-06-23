@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:31:13 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 18:35:48 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:07:05 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/minishell.h"
+#include "../includes/minishell.h"
 
 int	loop_if_dollar_sign(t_tools *tools, char *str, char **tmp, int j)
 {
@@ -23,16 +23,16 @@ int	loop_if_dollar_sign(t_tools *tools, char *str, char **tmp, int j)
 	ret = 0;
 	while (tools->envp[k])
 	{
-		if (ft_strncmp(str + j + 1, tools->envp[k], check_equal_sign(tools->envp[k])
-				- 1) == 0 && after_dol_lenght(str, j)
-			- j == (int)check_equal_sign(tools->envp[k]))
+		if (ft_strncmp(str + j + 1, tools->envp[k],
+				equal_sign(tools->envp[k]) - 1) == 0
+			&& after_dol_lenght(str, j) - j == (int)equal_sign(tools->envp[k]))
 		{
-			tmp2 = ft_strdup(tools->envp[k] + check_equal_sign(tools->envp[k]));
+			tmp2 = ft_strdup(tools->envp[k] + equal_sign(tools->envp[k]));
 			tmp3 = ft_strjoin(*tmp, tmp2);
 			free(*tmp);
 			*tmp = tmp3;
 			free(tmp2);
-			ret = check_equal_sign(tools->envp[k]);
+			ret = equal_sign(tools->envp[k]);
 		}
 		k++;
 	}

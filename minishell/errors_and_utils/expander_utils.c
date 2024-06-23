@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:52:40 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:39:59 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:02:32 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/errors_and_utils.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 size_t	dollar_sign(char *str)
 {

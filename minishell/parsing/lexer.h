@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/23 11:17:43 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/23 11:18:42 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEXER_H
 # define LEXER_H
 
@@ -85,8 +97,8 @@ char						*ft_substr(char const *s, unsigned int start,
 
 // parsing_utils.c
 int							skip_quoted_segment(const char *input,
-					unsigned int start_index,
-					char quote_char);
+								unsigned int start_index,
+								char quote_char);
 int							skip_spaces(char *str, int i);
 int							is_whitespace(char c);
 
@@ -107,8 +119,8 @@ int							parser_double_token_error(t_tools *tools,
 void						parser_error(t_tools *tools, t_lexer *lexer_list);
 
 t_simple_cmds				*ft_simple_cmdsnew(char **str,
-					int num_redirections,
-					t_lexer *redirections);
+								int num_redirections,
+								t_lexer *redirections);
 
 void						ft_simple_cmdsadd_back(t_simple_cmds **lst,
 								t_simple_cmds *new);
@@ -121,11 +133,11 @@ t_simple_cmds				*ft_simple_cmdsfirst(t_simple_cmds *map);
 
 int							export_error(char *c);
 void						lexer_error(t_tools *tools);
-int (*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd);
+int	(*builtin_arr(char *str))(t_tools *tools, t_simple_cmds *simple_cmd);
 int							ft_strncmp(const char *s1, const char *s2,
 								size_t n);
 void						free_arr(char **split_arr);
-int 						reset_tools(t_tools *tools);
+int							reset_tools(t_tools *tools);
 
 t_simple_cmds				*initialize_cmd(t_parser_tools *parser_tools);
 int							handle_pipe_errors(t_tools *tools, t_tokens token);
@@ -136,5 +148,4 @@ void						count_pipes(t_lexer *lexer_list, t_tools *tools);
 int							count_args(t_lexer *lexer_list);
 t_lexer						*find_next_cmd(t_lexer *lexer_lst);
 
-
-#endif /* LEXER_H */
+#endif

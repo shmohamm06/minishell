@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   built_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 22:14:23 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/22 17:40:12 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/06/23 11:06:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/built_ins.h"
-# include "../includes/minishell.h"
-
+#include "../includes/minishell.h"
 
 int	find_pwd(t_tools *mini)
 {
@@ -44,7 +42,7 @@ void	change_path(t_tools *mini)
 	mini->pwd = getcwd(NULL, sizeof(NULL));
 }
 
-size_t	check_equal_sign(char *str)
+size_t	equal_sign(char *str)
 {
 	size_t	i;
 
