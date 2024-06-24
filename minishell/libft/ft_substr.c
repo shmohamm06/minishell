@@ -3,32 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:12:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/19 11:47:33 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 07:35:56 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/15 18:12:27 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Allocates and copies a substring from the string <s>.
+ * The substring begins at index <start> and is of maximum size <len>.
+ * 
+ * @param s 
+ * @param start 
+ * @param len 
+ * @return the allocated string, or NULL if the allocation fails.
+ */
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	s_len;
+	size_t	l;
+	char	*p;
 
-	if (s == NULL)
+	l = len;
+	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len > s_len - start)
-		len = s_len - start;
-	if (len == 0 || start >= s_len)
-		return (ft_strdup(""));
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+	if (ft_strlen(s) < len)
+		l = ft_strlen(s);
+	p = (char *) ft_calloc(l + 1, sizeof(char));
+	if (!p)
 		return (NULL);
-	ft_strlcpy(str, s + start, len + 1);
-	return (str);
+	if (start > ft_strlen(s))
+	{
+		*p = 0;
+		return (p);
+	}
+	ft_strlcpy(p, (s + start), (l + 1));
+	return (p);
 }

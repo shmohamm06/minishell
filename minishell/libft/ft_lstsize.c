@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 13:27:53 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 15:56:54 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:55:14 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:49:30 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
+/**
+ * @brief Computes the length of the list <lst>.
+ * 
+ * @param lst 
+ * @return The length of the list <lst>.
+ */
 int	ft_lstsize(t_list *lst)
 {
 	int	i;

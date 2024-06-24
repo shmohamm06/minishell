@@ -3,28 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:09:36 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:23:14 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:57:13 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 02:58:04 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Compares byte string <s1> against
+ * byte string <s2>. Both strings are assumed to be <n> bytes long.
+ * 
+ * @param s1 
+ * @param s2 
+ * @param n 
+ * @return If the two strings are identical, return 0,
+ * otherwise returns the difference between the first two differing bytes.
+ */
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*a;
-	unsigned char	*b;
+	size_t			i;
+	unsigned char	*j1;
+	unsigned char	*j2;
 
-	a = (unsigned char *)s1;
-	b = (unsigned char *)s2;
-	while (n--)
-	{
-		if (*a != *b)
-			return (*a - *b);
-		a++;
-		b++;
-	}
-	return (0);
+	i = 0;
+	j1 = (unsigned char *) s1;
+	j2 = (unsigned char *) s2;
+	if (n == 0)
+		return (0);
+	while (j1[i] == j2[i] && (i < n - 1))
+		i++;
+	return (j1[i] - j2[i]);
 }

@@ -3,35 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:10:23 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:28:42 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 17:02:28 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:53:14 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *s1, const void *s2, size_t n)
+/**
+ * @brief Copies <len> bytes from string <src>
+ * to string <dst>. The two strings may overlap.
+ *  
+ * @param dst 
+ * @param src 
+ * @param len 
+ * @return The original value of <dst>.
+ */
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char		*dest;
-	const unsigned char	*src;
+	size_t	i;
 
-	if (s1 == NULL && s2 == NULL)
+	if (!(char *)dst && !(char *)src)
 		return (NULL);
-	dest = (unsigned char *)s1;
-	src = (const unsigned char *)s2;
-	if (dest < src)
+	if (dst > src)
 	{
-		while (n--)
-			*dest++ = *src++;
+		i = len - 1;
+		while ((int) i >= 0)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i--;
+		}
 	}
-	else if (dest > src)
+	else
 	{
-		dest += n;
-		src += n;
-		while (n--)
-			*(--dest) = *(--src);
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
-	return (s1);
+	return (dst);
 }

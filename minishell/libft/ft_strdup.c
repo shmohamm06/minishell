@@ -3,29 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:10:52 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/19 09:48:25 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 16:02:13 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/15 07:32:06 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+/**
+ * @brief Allocates sufficient memory for
+ * a copy of the string <s1> and copies it.
+ * 
+ * @param s 
+ * @return A pointer to the copied string,
+ * or NULL if it fails to allocate memory.
+ */
+char	*ft_strdup(const char *s)
 {
-	char	*new;
-	int		i;
+	size_t	i;
+	char	*p;
 
 	i = 0;
-	new = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
-	if (new == NULL)
+	p = (char *) ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!p)
 		return (NULL);
-	while (src[i])
+	while (s[i])
 	{
-		new[i] = src[i];
+		p[i] = s[i];
 		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	p[i] = 0;
+	return (p);
 }

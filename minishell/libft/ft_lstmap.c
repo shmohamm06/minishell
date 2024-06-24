@@ -3,36 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 10:55:15 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 15:10:54 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:54:35 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:44:55 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Iterates the list <lst> and applies the function
+ * <f> on the content of each node. Creates a new
+ * list resulting of the successive applications of the function <f>.
+ * The <del> function is used to delete the content of a node if needed.
+ * 
+ * @param lst 
+ * @param f 
+ * @param del 
+ * @return The new list. NULL if the allocation fails.
+ */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
-	t_list	*new_node;
-	void	*new_content;
+	t_list	*new;
+	t_list	*start;
 
-	new_list = NULL;
-	new_node = NULL;
 	if (!lst || !f)
 		return (NULL);
+	new = ft_lstnew((*f)(lst->content));
+	if (!new)
+		return (NULL);
+	start = new;
+	lst = lst->next;
 	while (lst)
 	{
-		new_content = f(lst->content);
-		new_node = ft_lstnew(new_content);
-		if (!new_content || !new_node)
-		{
-			ft_lstclear(&new_list, del);
+		new->next = ft_lstnew((*f)(lst->content));
+		if (!new)
 			return (NULL);
-		}
-		ft_lstadd_back(&new_list, new_node);
+		new = new->next;
 		lst = lst->next;
 	}
-	return (new_list);
+	ft_lstclear(&lst, del);
+	return (start);
 }

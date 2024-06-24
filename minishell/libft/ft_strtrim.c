@@ -3,49 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 09:38:21 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/23 08:31:33 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 09:28:19 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:56:18 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	setchar(char c, const char *set)
+/**
+ * @brief Allocates and returns a copy of <s1> with
+ * the characters specified in <set> removed from
+ * the beginning and the end of the string.
+ * 
+ * @param s1 
+ * @param set 
+ * @return The trimmed string. returns NULL if the allocation fails.
+ */
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	while (*set)
-	{
-		if (*set == c)
-			return (1);
-		set++;
-	}
-	return (0);
-}
+	char	*p;
+	int		i;
 
-char	*ft_strtrim(const char *s1, const char *set)
-{
-	int		start;
-	int		end;
-	int		len;
-	char	*str;
-
-	if (!s1)
+	if (!s1 || !set)
 		return (NULL);
-	if (!set)
-		set = "";
-	start = 0;
-	end = ft_strlen(s1) - 1;
-	while (s1[start] && setchar(s1[start], set))
-		start++;
-	while (end >= start && setchar(s1[end], set))
-		end--;
-	len = end - start + 1;
-	if (len <= 0)
-		len = 0;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s1 + start, len + 1);
-	return (str);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i >= 0 && ft_strrchr(set, s1[i]))
+		i--;
+	p = ft_substr(s1, 0, i + 1);
+	return (p);
 }

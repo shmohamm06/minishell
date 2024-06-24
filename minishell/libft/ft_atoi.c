@@ -3,36 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:08:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/04 23:39:10 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:40:54 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 05:45:16 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+/**
+ * @brief Converts the initial portion of the string
+ * pointed to by str to int representation.
+ * 
+ * @param nptr
+ * @return The value int
+ */
+int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	result;
-	int	sign;
+	int				i;
+	unsigned long	n;
+	int				sign;
 
-	i = 0;
-	result = 0;
+	n = 0;
 	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || (nptr[i] == 32))
 		i++;
-	if ((str[i] == '-') || (str[i] == '+'))
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (str[i] == '-')
+		if (nptr[i] == '-')
 			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		result = result * 10 + str[i] - '0';
+		n = n * 10 + nptr[i] % '0';
 		i++;
 	}
-	return (result * sign);
+	if (n > INT_MAX && sign == 1)
+		return (-1);
+	if (n > (unsigned long) INT_MIN && sign == -1)
+		return (0);
+	return (sign * n);
 }

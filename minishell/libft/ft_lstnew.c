@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 09:27:10 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 16:54:25 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:54:55 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:47:23 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Allocates a new node. The member variable <content> is
+ * initialized with the value of the parameter <content>.
+ * The variable <next> is initialized to NULL.
+ * 
+ * @param content 
+ * @return A pointer to the new node.
+ */
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*newnode;
+	t_list	*new;
 
-	newnode = malloc(sizeof(t_list));
-	if (!newnode)
+	new = malloc(sizeof(t_list));
+	if (!(new))
 		return (NULL);
-	newnode->content = content;
-	newnode->next = NULL;
-	return (newnode);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

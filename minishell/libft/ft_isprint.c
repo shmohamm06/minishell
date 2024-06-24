@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:09:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/19 08:12:32 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:42:48 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 02:52:27 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int i)
+/**
+ * @brief Tests for any printing character,
+ * including space (' ').
+ * The value of the argument must be representable as an unsigned char
+ * 
+ * @param c
+ * @return If true, returns 1.
+ * @return if false, returns 0.
+ */
+int	ft_isprint(int c)
 {
-	if (i >= 32 && i <= 126)
+	if (c >= ' ' && c <= 126)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

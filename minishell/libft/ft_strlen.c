@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:11:35 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/03/21 11:09:53 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 16:03:30 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/28 20:49:13 by hakaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Computes the length of the string <s>.
+ * 
+ * @param s 
+ * @return The number of characters that precede the terminating NUL character.
+ */
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (!s)
-		return (0);
 	while (s[i])
 		i++;
 	return (i);

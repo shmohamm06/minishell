@@ -3,29 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 13:43:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/19 14:32:36 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:52:17 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:31:51 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Appends the linked list <lst> with the node <new>
+ * 
+ * @param lst 
+ * @param new 
+ */
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
 
-	if (new != NULL)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		last = *lst;
-		if (*lst == NULL)
-			*lst = new;
-		else
-		{
-			while (last->next != NULL)
-				last = last->next;
-			last->next = new;
-		}
+		*lst = new;
+		return ;
 	}
+	last = ft_lstlast(*lst);
+	last->next = new;
 }

@@ -3,25 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:10:18 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:24:56 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 17:19:13 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/27 21:29:58 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+/**
+ * @brief Copies <n> bytes from memory area <src>
+ * to memory area <dest>.  If dst and src overlap, behavior is undefined.
+ * 
+ * @param dest 
+ * @param src 
+ * @param n 
+ * @return The original value of <dest>.
+ */
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*a;
-	unsigned char	*b;
+	size_t	i;
 
-	a = (unsigned char *)dst;
-	b = (unsigned char *)src;
-	if (!n || dst == src)
-		return (dst);
-	while (n--)
-		*a++ = *b++;
-	return (dst);
+	if (!(char *) dest && !(char *) src)
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		((char *)dest)[i] = ((char *)src)[i];
+		i++;
+	}
+	return ((char *) dest);
 }

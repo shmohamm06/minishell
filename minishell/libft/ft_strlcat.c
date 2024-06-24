@@ -3,34 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:11:03 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/22 11:07:22 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 06:33:12 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 03:44:52 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+/**
+ * @brief appends string <src> to the end of <dst>.
+ * It will append at most <n> - strlen(dst) - 1 characters.
+ * It will then NUL-terminate.
+ * 
+ * @param dst 
+ * @param src 
+ * @param n 
+ * @return if <n> is greater than strlen(dst), returns strlen(src) + <n>.
+ * otherwise, return strlen(src) + strlen(dst)
+ */
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
 	size_t	i;
-	size_t	j;
-	size_t	dst_len;
+	size_t	d;
+	size_t	s;
 
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	dst_len = ft_strlen(dst);
-	if (dstsize <= dst_len)
-		return (dstsize + ft_strlen(src));
-	i = dst_len;
-	j = 0;
-	while (src[j] != '\0' && i + 1 < dstsize)
+	i = 0;
+	d = ft_strlen(dst);
+	s = ft_strlen(src);
+	if (n <= d)
+		s += n;
+	else
 	{
-		dst[i] = src[j];
-		i++;
-		j++;
+		s += d;
+		while (src[i] && (d + i) < (n - 1))
+		{
+			dst[d + i] = src[i];
+			i++;
+		}
+		dst[d + i] = 0;
 	}
-	dst[i] = '\0';
-	return (dst_len + ft_strlen(src));
+	return (s);
 }

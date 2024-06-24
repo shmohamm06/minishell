@@ -3,19 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:09:17 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/19 08:11:40 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:42:31 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 02:54:10 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int i)
+/**
+ * @brief Tests for a decimal digit character.
+ * 
+ * @param c
+ * @return If true, returns 1.
+ * @return if false, returns 0.
+ */
+int	ft_isdigit(int c)
 {
-	if (i >= '0' && i <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

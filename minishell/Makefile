@@ -1,70 +1,92 @@
-RESET = \033[0m
-GREEN = \033[32m
-YELLOW = \033[33m
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/06 19:58:12 by mmassarw          #+#    #+#              #
+#    Updated: 2023/01/30 07:55:57 by hakaddou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = minishell
-CC = cc
-LIB_DIR = libft
-CFLAGS =  -Wall -Wextra -Werror -I/Users/$(USER)/.brew/opt/readline/include
+NAME	=	minishell
 
-# Source files from both parts, considering the directory structure
-SRCS =  main.c \
-        minishell_loop.c \
-        parsing/t_simple_cmds_utils.c \
-        parsing/t_lexer_clear_utils.c \
-        parsing/lexer/token_handling.c \
-        parsing/lexer/lexer.c \
-        parsing/lexer/parsing_utils.c \
-        parsing/lexer/handle_redirections.c \
-        parsing/lexer/error_handling.c \
-        parsing/lexer/parser.c \
-        parsing/lexer/parsing_extra_utilites.c \
-        executor/expander.c \
-        executor/check_redirections.c  \
-        executor/executor.c \
-        executor/handle_cmds.c \
-        executor/here_doc.c \
-        built_ins/built_ins.c  \
-        built_ins/built_utils.c \
-        built_ins/ft_cd.c \
-        built_ins/ft_echo.c  \
-        built_ins/ft_env.c  \
-        built_ins/ft_exit.c  \
-        built_ins/ft_export.c  \
-        built_ins/ft_pwd.c \
-        built_ins/ft_unset.c \
-        errors_and_utils/pasre_env.c\
-        errors_and_utils/executor_utils.c \
-        errors_and_utils/expander_utils.c \
-        errors_and_utils/utils_and_errors.c \
+CC		=	@gcc
+CFLAGS	=	-g3 -Wall -Wextra -Werror# -fsanitize=address
+RLFLAGS =	-L/usr/local/lib -I/usr/local/include -lreadline
 
-# Object files corresponding to source files
-OBJS = $(SRCS:.c=.o)
+RM		=	@rm -f
+ECHO	=	@echo
 
-# Compilation rules
-$(NAME): $(LIB_DIR)/libft.a $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR)/libft.a -o  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib -o $(NAME)
-	@echo "$(GREEN)Created: $(words $(OBJS)) object file(s) for minishell"
-	@echo "Created: $(NAME)$(RESET)"
+MAKELIB	=	@make -C libft
+LIBFT	=	libft/libft.a
+CLNLIB	=	@make clean -C libft
+FCLNLIB	=	@make fclean -C libft
 
-$(LIB_DIR)/libft.a:
-	@$(MAKE) -C $(LIB_DIR)
+SRCS	=	SRCS/main.c \
+			SRCS/execution/execution.c \
+			SRCS/execution/builtins.c \
+			SRCS/execution/ft_echo.c \
+			SRCS/execution/ft_export.c \
+			SRCS/execution/export_utils.c \
+			SRCS/parsing/ft_parse_env.c \
+			SRCS/parsing/ft_parse_token.c \
+			SRCS/parsing/ft_parse_token_utils.c \
+			SRCS/parsing/ft_tokenizer.c \
+			SRCS/utils/ft_free_list.c \
+			SRCS/utils/ft_print_list.c \
+			SRCS/utils/temp_funs.c \
+			SRCS/execution/ft_unset.c \
+			SRCS/execution/ft_exit.c \
+			SRCS/execution/env_conv.c \
+			SRCS/execution/ft_cd.c \
+			SRCS/execution/cd_utils.c \
+			SRCS/execution/get_path_srcs.c \
+			SRCS/execution/design.c \
+			SRCS/execution/redirections.c \
+			SRCS/execution/dups.c \
+			SRCS/execution/redirections_srcs.c \
+			SRCS/execution/check_exec_dir.c \
+			SRCS/execution/execution_utils.c \
+			SRCS/execution/heredoc.c \
+			SRCS/execution/fd_handler.c \
+			SRCS/execution/process_utils.c
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+OBJS	=	$(SRCS:.c=.o)
 
-all: $(NAME)
+$(NAME):	$(OBJS)
+			$(MAKELIB)
+			$(ECHO) "Compiling minishell ......"
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(RLFLAGS) 
+
+all:		$(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@$(MAKE) -C $(LIB_DIR) clean
-	@echo "$(YELLOW)Removed: $(words $(OBJS)) object file(s) for minishell"
-	@echo "Removed: $(NAME)$(RESET)"
+			$(CLNLIB)
+			$(RM) $(OBJS)
 
-fclean: clean
-	@rm -f $(NAME)
-	@rm -f $(LIB_DIR)/libft.a
+fclean:		
+			$(FCLNLIB)
+			$(ECHO) "Removing minishell ......."
+			$(RM) $(NAME) $(OBJS)
 
-re: fclean all
+re:			fclean all clean
+
+exec:		all
+			@./$(NAME)
+
+rexec:		re
+			@./$(NAME)
+
+leaks:
+			make re && make clean \
+			&& clear \
+			&& valgrind --leak-check=full \
+			--suppressions=.rl.supp \
+			--track-origins=yes \
+			--show-leak-kinds=all -s \
+			--track-fds=yes \
+			./minishell
 
 .PHONY: all clean fclean re

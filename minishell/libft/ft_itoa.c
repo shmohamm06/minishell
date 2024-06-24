@@ -3,60 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 12:48:29 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:17:27 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:51:50 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:50:12 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	ft_len(int n)
+char	*ft_itoa_alloc(int n, int *i)
 {
-	unsigned int	len;
+	long	nbr;
+	char	*p;
 
-	len = 0;
-	if (n < 0)
+	nbr = n;
+	if (nbr < 0)
 	{
-		len++;
-		n = -n;
+		nbr *= -1;
+		*i += 1;
 	}
-	if (n == 0)
-		return (1);
-	while (n > 0)
+	while (nbr > 9)
 	{
-		n = n / 10;
-		len++;
+		nbr /= 10;
+		*i += 1;
 	}
-	return (len);
+	p = (char *) malloc(*i + 1);
+	if (!p)
+		return (NULL);
+	p[*i] = 0;
+	return (p);
 }
 
+/**
+ * @brief Converts int to str.
+ * 
+ * @param n
+ * @return The value string.
+ */
 char	*ft_itoa(int n)
 {
-	unsigned int	len;
-	char			*ptr;
-	int				i;
+	int		i;
+	char	*p;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	len = ft_len(n);
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr == NULL)
+	i = 1;
+	p = ft_itoa_alloc(n, &i);
+	if (!p)
 		return (NULL);
-	ptr[len] = '\0';
+	if (n == 0)
+		*p = '0';
 	if (n < 0)
+		p[0] = '-';
+	while (n)
 	{
-		ptr[0] = '-';
-		n = -n;
+		if (n > 0)
+			p[--i] = (n % 10) + '0';
+		else
+			p[--i] = ((n % 10) * -1) + '0';
+		n /= 10;
 	}
-	i = len - 1;
-	while (n >= 10)
-	{
-		ptr[i] = ('0' + (n % 10));
-		n = n / 10;
-		i--;
-	}
-	ptr[i] = (n + '0');
-	return (ptr);
+	return (p);
 }

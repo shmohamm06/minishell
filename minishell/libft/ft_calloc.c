@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shahriarshadman <shahriarshadman@studen    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:09:00 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/01/19 17:28:51 by shahriarsha      ###   ########.fr       */
+/*   Created: 2022/05/06 15:41:18 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/11 22:25:35 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+/**
+ * @brief Allocates enough space for <nmemb> objects
+ * that are <size> bytes of memory each
+ * and returns a pointer to the allocated memory.
+ * The allocated memory is filled with bytes of value zero.
+ * 
+ * @param nmemb
+ * @param size
+ * @return If successful, return a pointer to allocated memory,
+ * @return if there is an error, return a NULL pointer.
+ */
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
-	size_t	totalbytes;
+	void	*p;
 
-	if (size != 0 && count > UINT_MAX / size)
+	p = malloc(nmemb * size);
+	if (!p)
 		return (NULL);
-	totalbytes = count * size;
-	ptr = malloc(totalbytes);
-	if (ptr != NULL)
-		ft_bzero(ptr, totalbytes);
-	return (ptr);
+	ft_bzero(p, (nmemb * size));
+	return (p);
 }

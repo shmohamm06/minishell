@@ -3,24 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: mmassarw <mmassarw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/04 08:10:38 by shmohamm          #+#    #+#             */
-/*   Updated: 2023/07/20 10:33:39 by shmohamm         ###   ########.fr       */
+/*   Created: 2022/05/06 15:59:01 by mmassarw          #+#    #+#             */
+/*   Updated: 2023/01/07 04:54:24 by mmassarw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+/**
+ * @brief Writes <n> bytes of value <c>
+ * (converted to an unsigned char) to the string <s>.
+ * 
+ * @param s 
+ * @param c 
+ * @param n 
+ * @return the string <s>.
+ */
+void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*i;
+	char	*j;
 
-	i = (char *)b;
-	while (len > 0)
+	j = (char *) s;
+	while (n > 0)
 	{
-		i[len - 1] = c;
-		len--;
+		*j = c;
+		j++;
+		n--;
 	}
-	return (b);
+	return (s);
 }
