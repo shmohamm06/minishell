@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_srcs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 19:20:47 by hakaddou          #+#    #+#             */
-/*   Updated: 2023/01/29 19:03:26 by hakaddou         ###   ########.fr       */
+/*   Created: 2024/06/24 12:46:43 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/24 12:46:44 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_handler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 19:30:42 by hakaddou          #+#    #+#             */
-/*   Updated: 2023/01/29 19:31:43 by hakaddou         ###   ########.fr       */
+/*   Created: 2024/06/24 12:45:58 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/24 12:45:59 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

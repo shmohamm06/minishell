@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 07:53:21 by hakaddou          #+#    #+#             */
-/*   Updated: 2023/02/01 02:11:35 by hakaddou         ###   ########.fr       */
+/*   Created: 2024/06/24 12:46:39 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/24 12:46:40 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

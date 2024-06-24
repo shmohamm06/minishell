@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 19:58:43 by hakaddou          #+#    #+#             */
-/*   Updated: 2023/02/01 15:05:07 by codespace        ###   ########.fr       */
+/*   Created: 2024/06/24 12:46:22 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/24 12:46:23 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

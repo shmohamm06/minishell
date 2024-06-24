@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_exec_dir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakaddou <hakaddou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 03:59:03 by hakaddou          #+#    #+#             */
-/*   Updated: 2023/01/27 03:59:49 by hakaddou         ###   ########.fr       */
+/*   Created: 2024/06/24 12:44:25 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/06/24 12:44:26 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
