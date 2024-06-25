@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:50 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:45:51 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:12 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "built_ins.h"
 
 // prints the env in special format with
 //the uninitialised values

@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:11 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:44:12 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:18 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "built_ins.h"
 
 int	builtin_check(t_mini *mini, t_cmd *cmd)
 {

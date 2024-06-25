@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:30 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:46:31 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:50 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 // pipex functions
 char	*split_and_join(char *av_cmd, char *splitted)

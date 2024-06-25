@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:46:13 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:07 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "built_ins.h"
 
 void	print_echo(char **args, int flag)
 {

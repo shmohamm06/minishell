@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:46:23 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:02 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "built_ins.h"
 
 // place holder for check_valid_identifer function
 int	check_export_args(char *arg)

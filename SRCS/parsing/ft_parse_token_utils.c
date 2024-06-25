@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:49 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 10:52:50 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:52:05 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 /**
  * @brief checks if the <string> is a redirection or not
@@ -114,7 +115,6 @@ t_rdr	*ft_add_to_rdrlist(t_rdr *rdr_head, char **token, int *i, t_mini *mini)
 		rdr_tail->next = rdr_new;
 	return (rdr_head);
 }
-
 /**
  * @brief parses all the redirections and args in <token> into <cmd->arg>
  * and <cmd->rdr>
@@ -124,6 +124,7 @@ t_rdr	*ft_add_to_rdrlist(t_rdr *rdr_head, char **token, int *i, t_mini *mini)
  * @param j counter for <cmd->arg>
  * @param i counter for <token>
  */
+
 void	ft_populate_cmd(t_mini *mini, t_cmd *cmd, char **token, int i[0])
 {
 	cmd->rdr = NULL;

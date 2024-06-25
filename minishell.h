@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 10:51:00 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:48:08 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,33 +147,11 @@ typedef struct s_mini
 
 int		random_between(int min, int max);
 
-// builtins
-
-void	print_pwd(void);
-void	ft_echo(char **args);
-void	ft_export(char **args, t_mini *mini);
-void	ft_unset(char **args, t_mini *mini);
-void	ft_exit(char **args, t_mini *mini);
-int		builtin_check(t_mini *mini, t_cmd *cmd);
-
-// export
-
-void	ft_export(char **args, t_mini *mini);
-void	parse_new_export(char *arg, t_mini *mini);
-void	ft_modify_env(char *arg, t_mini *mini);
-t_env	*env_already_exist(char *arg, t_mini *mini);
-int		check_export_args(char *arg);
-int		check_valid_identifier(char *arg);
-void	add_to_env(char *arg, t_mini *mini);
-char	*set_env_value(char *arg, t_env *new);
-char	*set_env_key(char *arg);
-void	print_export(t_mini *mini);
-
 // parsing
 
 void	ft_tokenize(t_mini *mini);
 int		ft_check_rdr(char *string);
-void	ft_populate_cmd(t_mini *mini, t_cmd *cmd, char **token, int *i);
+void	ft_populate_cmd(t_mini *mini, t_cmd *cmd, char **token, int i[0]);
 int		ft_count_till_pipe(char **token);
 void	ft_parse_env(t_mini *mini, const char **envp);
 void	ft_parse_token(t_mini *mini, char **token);
@@ -194,7 +172,6 @@ void	ft_exit_shell(t_mini *m, int er, char *p_er, int fd);
 // utils
 
 void	ft_print_cmd(t_cmd *s_head);
-void	print_env(t_mini *mini);
 void	ft_print_split(char **split);
 void	parse_input(t_mini *mini);
 
@@ -202,28 +179,8 @@ void	parse_input(t_mini *mini);
 
 int	g_exit_code;
 
-// unset
-void	ft_unset(char **args, t_mini *mini);
-int		check_valid_identifier_export(char *arg);
-int		check_unset_args(char *arg);
-void	free_single_env(t_env *node);
-void	delete_env_list(char *arg, t_mini *mini);
-
-// exit
-void	ft_exit(char **args, t_mini *mini);
-int		arg_count(char **args);
-int		check_exit_alpha(char **args);
-void	exit_and_print(int code);
-void	exit_success(char **args, t_mini *mini);
-
-// chdir (cd)
-void	ft_cd(char **args, t_mini *mini);
-void	go_to_home(t_mini *mini, char *old_pwd);
-void	go_to_old_pwd(t_mini *mini, char *old_pwd);
-void	set_env_pwd(t_mini *mini);
-void	set_old_pwd(t_mini *mini, char *old_pwd);
-void	cd_return_success(t_mini *mini, char *old_pwd);
-char	*find_str_env(char *arg, t_mini *mini, int flag);
+// void	exit_and_print(int code);
+// void	exit_success(char **args, t_mini *mini);
 
 // env **char conversion from linked list
 void	*perror_return(char *str, void *ret);

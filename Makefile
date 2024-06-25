@@ -14,10 +14,6 @@ FCLNLIB	=	@make fclean -C libft
 
 SRCS	=	SRCS/main.c \
 			SRCS/execution/execution.c \
-			SRCS/execution/builtins.c \
-			SRCS/execution/ft_echo.c \
-			SRCS/execution/ft_export.c \
-			SRCS/execution/export_utils.c \
 			SRCS/parsing/ft_parse_env.c \
 			SRCS/parsing/ft_parse_token.c \
 			SRCS/parsing/ft_parse_token_utils.c \
@@ -25,11 +21,9 @@ SRCS	=	SRCS/main.c \
 			SRCS/utils/ft_free_list.c \
 			SRCS/utils/ft_print_list.c \
 			SRCS/utils/temp_funs.c \
-			SRCS/execution/ft_unset.c \
-			SRCS/execution/ft_exit.c \
+			SRCS/built_ins/ft_unset.c \
+			SRCS/built_ins/ft_exit.c \
 			SRCS/execution/env_conv.c \
-			SRCS/execution/ft_cd.c \
-			SRCS/execution/cd_utils.c \
 			SRCS/execution/get_path_srcs.c \
 			SRCS/execution/design.c \
 			SRCS/execution/redirections.c \
@@ -39,7 +33,13 @@ SRCS	=	SRCS/main.c \
 			SRCS/execution/execution_utils.c \
 			SRCS/execution/heredoc.c \
 			SRCS/execution/fd_handler.c \
-			SRCS/execution/process_utils.c
+			SRCS/execution/process_utils.c \
+			SRCS/built_ins/builtins.c \
+			SRCS/built_ins/ft_echo.c \
+			SRCS/built_ins/ft_export.c \
+			SRCS/built_ins/export_utils.c \
+			SRCS/built_ins/ft_cd.c \
+			SRCS/built_ins/cd_utils.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

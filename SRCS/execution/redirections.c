@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:48 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:46:49 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:58 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 int	parse_redirect(t_mini *mini, t_cmd *cmd)
 {

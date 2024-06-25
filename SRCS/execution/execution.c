@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:13 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:45:14 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:48:47 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 void	exec_children_cmds(t_mini *mini, t_cmd *cmd)
 {

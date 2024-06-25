@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:44:46 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:42 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 // prints the error message to STD ERROR
 // passed and returns ret (mainly ret is NULL)

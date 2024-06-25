@@ -6,11 +6,12 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:31 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 12:44:32 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:51:30 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
 
 char	*clrd_line(char *str, char *path)
 {
