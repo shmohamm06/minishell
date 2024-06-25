@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:38 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:51:35 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:19 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
+#include "execution.h"
 
 int	ft_dup2_output(t_rdr *rdr)
 {

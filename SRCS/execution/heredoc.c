@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:35 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:51:53 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:35 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
+#include "execution.h"
 
 void	null_params(char **tmp, char **total, char **line)
 {

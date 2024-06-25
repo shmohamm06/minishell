@@ -2,6 +2,7 @@
   "files.associations": {
     "history.h": "c",
     "built_ins.h": "c",
-    "minishell.h": "c"
+    "minishell.h": "c",
+    "execution.h": "c"
   }
 }

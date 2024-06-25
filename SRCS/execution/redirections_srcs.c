@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:43 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:51:57 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:39 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
+#include "execution.h"
 
 void	close_rdr_files(t_mini *mini, t_cmd *cmd)
 {

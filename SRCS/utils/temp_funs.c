@@ -6,11 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:35 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 10:52:36 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:09:09 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
+#include "../execution/execution.h"
 
 int	random_between(int min, int max)
 {

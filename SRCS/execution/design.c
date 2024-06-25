@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:31 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:51:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:18 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
+#include "execution.h"
 
 char	*clrd_line(char *str, char *path)
 {
@@ -20,7 +21,7 @@ char	*clrd_line(char *str, char *path)
 	char	*s_clr;
 
 	ft_bzero(str_cpy, sizeof(str_cpy));
-	if (ft_strncmp(path, "hakaddou", 9) == 0
+	if (ft_strncmp(path, "shmohamm", 9) == 0
 		|| ft_strncmp(path, "root", 5) == 0)
 		s_clr = ft_strjoin(str, "~  ");
 	else

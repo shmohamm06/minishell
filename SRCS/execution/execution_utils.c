@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:49:17 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:05:24 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
+#include "execution.h"
 
 int	is_slash_exec(t_mini *mini, t_cmd *cmd)
 {

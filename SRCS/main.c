@@ -6,12 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:51:15 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 10:53:20 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:06:26 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "built_ins/built_ins.h"
+#include "execution/execution.h"
 
 void	take_input(t_mini *mini)
 {

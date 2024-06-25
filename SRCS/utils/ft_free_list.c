@@ -6,11 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:27 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/24 10:52:28 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:09:03 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+#include "../built_ins/built_ins.h"
+#include "../execution/execution.h"
 
 /**
  * @brief frees and sets the linked list <l_cmd> to NULL
