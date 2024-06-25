@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:55:06 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:03:19 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:23:01 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,27 @@ char	*ft_addmidstr(char *start, t_env *match, size_t i, t_mini *mini)
 
 char	*ft_str_expand(char *quote, t_mini *mini)
 {
-	char				*start;
-	char				*temp;
-	enum e_tokentype	type;
-	size_t				i;
-	char				*hold;
+	char	*start;
+	char	*temp;
+	size_t	i;
+	char	*hold;
 
 	temp = NULL;
-	i = 1;
-	type = VARIABLE;
 	start = ft_strchr(quote, '$');
-	if (start)
-	{
-		ft_eovchr(&i, start + 1, &type);
-		hold = ft_substr(start + 1, 0, i - 1);
-		if (type == VARIABLE)
-			temp = ft_addmidstr(start, env_already_exist(hold, mini), i, mini);
-		hold = (char *)ft_free(hold);
-		*start = '\0';
-		start = ft_strjoin(quote, temp);
-		if (!start)
-			ft_exit_shell(mini, 137, "Page allocation failure", 2);
-		free(temp);
-		free(quote);
-		quote = start;
-	}
-	return (quote);
+	if (!start)
+		return (quote);
+	ft_eovchr(&i, start + 1, (enum e_tokentype[]){VARIABLE});
+	hold = ft_substr(start + 1, 0, i - 1);
+	if (hold)
+		temp = ft_addmidstr(start, env_already_exist(hold, mini), i, mini);
+	free(hold);
+	*start = '\0';
+	start = ft_strjoin(quote, temp);
+	if (!start)
+		ft_exit_shell(mini, 137, "Page allocation failure", 2);
+	free(temp);
+	free(quote);
+	return (start);
 }
 
 void	ft_collapsequotes(t_mini *mini)
@@ -82,32 +77,25 @@ void	ft_collapsequotes(t_mini *mini)
 char	**convert_linked_list(t_token *head)
 {
 	size_t	i;
-	char	*hold;
 	char	**result;
 	t_token	*current;
 
 	i = 0;
-	result = (char **)ft_calloc(1, sizeof(char *));
+	result = ft_calloc(1, sizeof(char *));
 	current = head;
-	while (current != NULL)
+	while (current)
 	{
 		if (current->type != SPACES)
 		{
-			if (current->prev != NULL && current->prev->type == WORD
+			if (current->prev && current->prev->type == WORD
 				&& current->type != REDIRECTION && current->type != PIPE)
-			{
-				hold = (char *)ft_strjoin(result[i - 1], current->content);
-				result[i - 1] = (char *)ft_free(result[i - 1]);
-				result[i - 1] = hold;
-			}
+				result[i - 1] = ft_strjoin_free(result[i - 1],
+						current->content);
 			else
 			{
-				result[i] = (char *)ft_calloc(ft_strlen(current->content) + 1,
-						1);
-				ft_strcpy(result[i], current->content);
-				i++;
-				result = (char **)ft_realloc(result, sizeof(char *) * (i + 1),
-						sizeof(char *) * (i));
+				result = ft_realloc(result, sizeof(char *) * (i + 2),
+						sizeof(char *) * (i + 1));
+				result[i++] = ft_strdup(current->content);
 			}
 		}
 		current = current->next;
@@ -115,16 +103,3 @@ char	**convert_linked_list(t_token *head)
 	result[i] = NULL;
 	return (result);
 }
-
-void	ft_tokenize(t_mini *mini)
-{
-	ft_tokenlist(mini);
-	print_linked_list_by_type(mini->l_token);
-	if (!ft_evaltokens(mini))
-		return ;
-	ft_expandvar(mini);
-	ft_collapsequotes(mini);
-	mini->token = convert_linked_list(mini->l_token);
-	printf("\n\n");
-}
-// print_linked_list_by_type(mini->l_token);

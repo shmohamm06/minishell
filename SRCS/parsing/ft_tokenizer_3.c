@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:05:37 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:07:54 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:59:35 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,19 @@ bool	ft_evaltokens(t_mini *mini)
 	current = mini->l_token;
 	while (current)
 	{
-		if (current->type == PIPE || current->type == REDIRECTION)
+		if ((current->type == PIPE || current->type == REDIRECTION)
+			&& !ft_evalops(current, mini))
 		{
-			if (!ft_evalops(current, mini))
-			{
-				fd_printf(2, "minishell: syntax error \
-near unexpected token\n");
-				g_exit_code = 258;
-				return (false);
-			}
+			fd_printf(2, "minishell: syntax error near unexpected token\n");
+			g_exit_code = 258;
+			return (false);
 		}
-		if (current->type == SINGLE || current->type == DOUBLE)
+		if ((current->type == SINGLE || current->type == DOUBLE)
+			&& !ft_strchr(current->content + 1, *current->content))
 		{
-			if (!ft_strchr(current->content + 1, *current->content))
-			{
-				fd_printf(2, "minishell: syntax error \
-from open quotes\n");
-				g_exit_code = 258;
-				return (false);
-			}
+			fd_printf(2, "minishell: syntax error from open quotes\n");
+			g_exit_code = 258;
+			return (false);
 		}
 		current = current->next;
 	}

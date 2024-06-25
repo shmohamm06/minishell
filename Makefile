@@ -17,6 +17,7 @@ SRCS	=	SRCS/main.c \
 			SRCS/parsing/ft_parse_env.c \
 			SRCS/parsing/ft_parse_token.c \
 			SRCS/parsing/ft_parse_token_utils.c \
+			SRCS/parsing/ft_parse_extra_2.c \
 			SRCS/parsing/ft_parse_extra.c \
 			SRCS/parsing/ft_tokenizer_1.c \
 			SRCS/parsing/ft_tokenizer_2.c \

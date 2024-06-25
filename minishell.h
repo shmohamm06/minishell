@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:13:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:31:06 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,10 @@ void					ft_parse_env(t_mini *mini, const char **envp);
 void					ft_parse_token(t_mini *mini, char **token);
 void					set_env_underscore(char *cmd, t_mini *mini);
 void					concatenate_token(t_token_groups *groups,
-							t_token *current);
+								t_token *current);
 void					print_token_groups(t_token_groups *groups);
+
+char					*ft_strjoin_free(char *s1, const char *s2);
 
 // frees
 
