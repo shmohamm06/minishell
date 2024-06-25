@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 10:54:32 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:09:52 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:02:16 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	wait_for_children(t_mini *mini);
 // redirection_srcs.c
 void	ft_close_rdr_backv2(t_rdr *ordr, t_rdr *irdr);
 void	close_rdr_back(t_cmd *cmd);
-int	error_set_print_close(t_mini *mini, t_cmd *cmd, int error);
+int		error_set_print_close(t_mini *mini, t_cmd *cmd, int error);
 
 // redirections.c
 int		parse_redirect(t_mini *mini, t_cmd *cmd);

@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:31 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:09:06 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:10:08 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,24 @@ void	ft_print_cmd(t_cmd *s_head)
 		printf("\n\n");
 		current = current->next;
 	}
+}
+
+/**
+ * @brief frees the struct <s_mini>
+ * and exits the program with the exit code <error>
+ * 
+ * @param s_mini 
+ * @param error 
+ */
+void	ft_exit_shell(t_mini *s_mini, int error, char *p_err, int fd)
+{
+	g_exit_code = error;
+	if (p_err)
+		fd_printf(fd, "%s\n", p_err);
+	close_all_fds(s_mini);
+	ft_free_all(s_mini);
+	ft_close(0, 0, NULL);
+	ft_close(1, 0, NULL);
+	ft_close(2, 0, NULL);
+	exit(g_exit_code);
 }

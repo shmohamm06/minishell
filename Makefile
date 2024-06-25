@@ -17,7 +17,10 @@ SRCS	=	SRCS/main.c \
 			SRCS/parsing/ft_parse_env.c \
 			SRCS/parsing/ft_parse_token.c \
 			SRCS/parsing/ft_parse_token_utils.c \
-			SRCS/parsing/ft_tokenizer.c \
+			SRCS/parsing/ft_parse_extra.c \
+			SRCS/parsing/ft_tokenizer_1.c \
+			SRCS/parsing/ft_tokenizer_2.c \
+			SRCS/parsing/ft_tokenizer_3.c \
 			SRCS/utils/ft_free_list.c \
 			SRCS/utils/ft_print_list.c \
 			SRCS/utils/temp_funs.c \
