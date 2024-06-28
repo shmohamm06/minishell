@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 16:31:06 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:58:43 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # include <sys/wait.h>
 # include <term.h>
 # include <termios.h>
+
+//  signals
+# define SIG_CODE 256
+# define SIGINT_CODE (SIG_CODE + SIGINT)
+# define SIGQUIT_CODE (SIG_CODE + SIGQUIT)
 
 //	colors
 # define BLUE_FONT "\033[1;36m"
@@ -152,8 +157,13 @@ typedef struct s_token_groups
 	char				word[10000];
 }						t_token_groups;
 
-// temporary functions, tbc if they'd be used or not
+// // signals.c
+void					sigint_handler(int sig);
+void					sigquit_handler(int sig);
+void					event(void);
+void					init_signals(void);
 
+// temporary functions, tbc if they'd be used or not
 int						random_between(int min, int max);
 
 // parsing
@@ -166,8 +176,8 @@ int						ft_count_till_pipe(char **token);
 void					ft_parse_env(t_mini *mini, const char **envp);
 void					ft_parse_token(t_mini *mini, char **token);
 void					set_env_underscore(char *cmd, t_mini *mini);
-void					concatenate_token(t_token_groups *groups,
-								t_token *current);
+void	concatenate_token(t_token_groups *groups,
+						t_token *current);
 void					print_token_groups(t_token_groups *groups);
 
 char					*ft_strjoin_free(char *s1, const char *s2);

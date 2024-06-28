@@ -12,7 +12,9 @@ LIBFT	=	libft/libft.a
 CLNLIB	=	@make clean -C libft
 FCLNLIB	=	@make fclean -C libft
 
+
 SRCS	=	SRCS/main.c \
+			SRCS/signals.c \
 			SRCS/execution/execution.c \
 			SRCS/parsing/ft_parse_env.c \
 			SRCS/parsing/ft_parse_token.c \
@@ -25,8 +27,6 @@ SRCS	=	SRCS/main.c \
 			SRCS/utils/ft_free_list.c \
 			SRCS/utils/ft_print_list.c \
 			SRCS/utils/temp_funs.c \
-			SRCS/built_ins/ft_unset.c \
-			SRCS/built_ins/ft_exit.c \
 			SRCS/execution/env_conv.c \
 			SRCS/execution/get_path_srcs.c \
 			SRCS/execution/design.c \
@@ -38,6 +38,8 @@ SRCS	=	SRCS/main.c \
 			SRCS/execution/heredoc.c \
 			SRCS/execution/fd_handler.c \
 			SRCS/execution/process_utils.c \
+			SRCS/built_ins/ft_unset.c \
+			SRCS/built_ins/ft_exit.c \
 			SRCS/built_ins/builtins.c \
 			SRCS/built_ins/ft_echo.c \
 			SRCS/built_ins/ft_export.c \
