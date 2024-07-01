@@ -160,6 +160,8 @@ void 					command_prompt(void);
 void					init_signals(void);
 void 					minishell_prompt(void);
 void 					signal_handler_parent(int signum);
+void 					handle_heredoc(void);
+
 
 
 // parsing

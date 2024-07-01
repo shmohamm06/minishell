@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 13:45:43 by wyaseen           #+#    #+#             */
-/*   Updated: 2024/07/01 20:21:16 by wyaseen          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../minishell.h"
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -17,20 +5,29 @@
 
 int g_exit_code = 0; // Use g_exit_code as the global variable to manage state
 
-void heredoc_prompt(void)
-{
-    write(STDERR_FILENO, "\n", 1); // Print a newline to move to the next line
-    g_exit_code = 130; // Set the signal variable to indicate heredoc interruption
-    rl_on_new_line();
-    rl_replace_line("", 0); // Clear the current input line
-    rl_redisplay(); // Redraw the prompt
-}
+// void heredoc_prompt(void)
+// {
+//     g_exit_code = 130; // Set the signal variable to indicate heredoc interruption
+//     rl_replace_line("", 0); // Clear the current input line
+//     rl_redisplay(); // Redraw the prompt
+// }
 
 void command_prompt(void)
 {
     g_exit_code = -2;
 }
 
+void heredoc_prompt(void)
+{
+    rl_on_new_line();
+    ft_putstr_fd(" \b\b\n", 2);
+    g_exit_code = 1; // Set state to indicate heredoc mode
+    close(0); // Close standard input
+    rl_on_new_line();
+    rl_replace_line("", 0);
+    rl_redisplay();
+    g_exit_code = 130; // Set state to indicate heredoc interruption
+}
 void minishell_prompt(void)
 {
     write(STDERR_FILENO, "\n", 1); // Print a newline to move to the next line
@@ -45,21 +42,30 @@ void signal_handler_parent(int signum)
     if (signum == SIGINT)
     {
         if (g_exit_code == -1 || g_exit_code == 1)
+        {
             minishell_prompt();
+        }
         else if (g_exit_code == 2)
+        {
             command_prompt();
+        }
         else
+        {
             heredoc_prompt();
+        }
     }
-    if (signum == SIGQUIT && (g_exit_code == -1 || g_exit_code == 1))
+    else if (signum == SIGQUIT)
     {
-        g_exit_code = -1;
-    }
-    if (signum == SIGQUIT && g_exit_code == -2)
-    {
-        ft_putstr_fd("Quit:", STDERR_FILENO);
-        ft_putstr_fd("\n", STDERR_FILENO);
-        g_exit_code = -4;
+        if (g_exit_code == -1 || g_exit_code == 1)
+        {
+            g_exit_code = -1;
+        }
+        else if (g_exit_code == -2)
+        {
+            ft_putstr_fd("Quit: ", STDERR_FILENO);
+            ft_putstr_fd("\n", STDERR_FILENO);
+            g_exit_code = -4;
+        }
     }
 }
 

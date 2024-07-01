@@ -29,6 +29,7 @@ void	handle_heredoc_commands_input(t_rdr *rdr)
 	char	*line;
 
 	reset_pointers(&tmp, &total, &line);
+	g_exit_code = 1; // Set state to heredoc mode
 	while (1)
 	{
 		input = readline("> ");
@@ -48,31 +49,32 @@ void	handle_heredoc_commands_input(t_rdr *rdr)
 	input = ft_free(input);
 	rdr->file = ft_free(rdr->file);
 	rdr->file = total;
+	g_exit_code = -1; // Set state to heredoc mode
 }
 
-int	execute_pipe_heredoc(t_rdr *rdr, t_mini *mini, t_cmd *cmd)
+int execute_pipe_heredoc(t_rdr *rdr, t_mini *mini, t_cmd *cmd)
 {
-	pipe(rdr->fdpipe);
-	rdr->ret = 0;
-	rdr->fork_id = fork();
-	if (rdr->fork_id == 0)
-	{
-		rdr->fdpipe[0] = close_file_descriptor(rdr->fdpipe[0], 3, cmd);
-		rdr->dup2_fd = dup2(rdr->fdpipe[1], STDOUT_FILENO);
-		if (rdr->file)
-			fd_printf(STDOUT_FILENO, "%s", rdr->file);
-		rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
-		close_redirector_back(cmd);
-		exit_shell(mini, 0, NULL, 2);
-	}
-	else
-	{
-		rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
-		rdr->og_fd = dup(STDIN_FILENO);
-		rdr->dup2_fd = dup2(rdr->fdpipe[0], STDIN_FILENO);
-		waitpid(rdr->fork_id, &rdr->ret, WEXITSTATUS(rdr->ret));
-	}
-	return (0);
+    pipe(rdr->fdpipe);
+    rdr->ret = 0;
+    rdr->fork_id = fork();
+    if (rdr->fork_id == 0)
+    {
+        rdr->fdpipe[0] = close_file_descriptor(rdr->fdpipe[0], 3, cmd);
+        rdr->dup2_fd = dup2(rdr->fdpipe[1], STDOUT_FILENO);
+        if (rdr->file)
+            fd_printf(STDOUT_FILENO, "%s", rdr->file);
+        rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
+        close_redirector_back(cmd);
+        exit_shell(mini, 0, NULL, 2);
+    }
+    else
+    {
+        rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
+        rdr->og_fd = dup(STDIN_FILENO);
+        rdr->dup2_fd = dup2(rdr->fdpipe[0], STDIN_FILENO);
+        waitpid(rdr->fork_id, &rdr->ret, WEXITSTATUS(rdr->ret));
+    }
+    return (0);
 }
 
 void	handle_heredoc_commands(t_mini *mini)
