@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:27 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:10:00 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:48:50 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "../execution/execution.h"
 
-/**
- * @brief frees and sets the linked list <l_cmd> to NULL
- * 
- * @param l_cmd 
- */
-void	ft_free_cmd(t_cmd *l_cmd)
+void	free_command_list(t_cmd *l_cmd)
 {
 	t_rdr	*current_rdr;
 	t_rdr	*next_rdr;
@@ -30,25 +25,20 @@ void	ft_free_cmd(t_cmd *l_cmd)
 		current_rdr = l_cmd->rdr;
 		while (current_rdr != NULL)
 		{
-			current_rdr->file = (char *) ft_free(current_rdr->file);
+			current_rdr->file = (char *)ft_free(current_rdr->file);
 			next_rdr = current_rdr->next;
-			current_rdr = (t_rdr *) ft_free(current_rdr);
+			current_rdr = (t_rdr *)ft_free(current_rdr);
 			current_rdr = next_rdr;
 		}
 		if (l_cmd->arg)
-			l_cmd->arg = (char **) ft_free_split(l_cmd->arg);
+			l_cmd->arg = (char **)ft_free_split(l_cmd->arg);
 		next_cmd = l_cmd->next;
-		l_cmd = (t_cmd *) ft_free(l_cmd);
+		l_cmd = (t_cmd *)ft_free(l_cmd);
 		l_cmd = next_cmd;
 	}
 }
 
-/**
- * @brief frees and sets the linked list <l_env> to NULL
- * 
- * @param l_env 
- */
-void	ft_free_env(t_env *l_env)
+void	free_environment_list(t_env *l_env)
 {
 	t_env	*env_head;
 
@@ -57,13 +47,13 @@ void	ft_free_env(t_env *l_env)
 	{
 		l_env = env_head;
 		env_head = l_env->next;
-		l_env->key = (char *) ft_free(l_env->key);
-		l_env->value = (char *) ft_free(l_env->value);
-		l_env = (t_env *) ft_free(l_env);
+		l_env->key = (char *)ft_free(l_env->key);
+		l_env->value = (char *)ft_free(l_env->value);
+		l_env = (t_env *)ft_free(l_env);
 	}
 }
 
-void	ft_free_ltoken(t_token *list)
+void	free_token_list(t_token *list)
 {
 	t_token	*current;
 	t_token	*next;
@@ -72,35 +62,24 @@ void	ft_free_ltoken(t_token *list)
 	while (current != NULL)
 	{
 		next = current->next;
-		current->content = (char *) ft_free(current->content);
-		current = (t_token *) ft_free(current);
+		current->content = (char *)ft_free(current->content);
+		current = (t_token *)ft_free(current);
 		current = next;
 	}
 }
 
-/**
- * @brief frees the elemnts that need to be replaced
- * and sets those elements struct <s_mini> to NULL.
- * 
- * @param s_mini 
- */
-void	ft_free_cycle(t_mini *s_mini)
+void	free_mini_cycle(t_mini *s_mini)
 {
-	ft_free_cmd(s_mini->l_cmd);
+	free_command_list(s_mini->l_cmd);
 	s_mini->l_cmd = NULL;
-	ft_free_ltoken(s_mini->l_token);
+	free_token_list(s_mini->l_token);
 	s_mini->l_token = NULL;
-	s_mini->rl = (char *) ft_free(s_mini->rl);
-	s_mini->token = (char **) ft_free_split(s_mini->token);
+	s_mini->rl = (char *)ft_free(s_mini->rl);
+	s_mini->token = (char **)ft_free_split(s_mini->token);
 }
 
-/**
- * @brief frees and sets the struct <s_mini> to NULL
- * 
- * @param s_mini 
- */
-void	ft_free_all(t_mini *s_mini)
+void	free_mini_all(t_mini *s_mini)
 {
-	ft_free_cycle(s_mini);
-	ft_free_env(s_mini->l_env);
+	free_mini_cycle(s_mini);
+	free_environment_list(s_mini->l_env);
 }

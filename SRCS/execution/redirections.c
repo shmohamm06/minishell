@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:48 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:01:53 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,30 @@
 int	parse_redirect(t_mini *mini, t_cmd *cmd)
 {
 	t_rdr	*rdr;
-	t_rdr	*ordr;
-	t_rdr	*irdr;
+	t_rdr	*output_rdr;
+	t_rdr	*input_rdr;
 
-	ordr = NULL;
-	irdr = NULL;
+	output_rdr = NULL;
+	input_rdr = NULL;
 	rdr = cmd->rdr;
 	while (rdr)
 	{
-		rdr->fd = ft_close(rdr->fd, 3, cmd);
+		rdr->fd = close_file_descriptor(rdr->fd, 3, cmd);
 		if (rdr->e_rdr == OUTPUT || rdr->e_rdr == APPEND)
-			ordr = rdr;
+			output_rdr = rdr;
 		if (rdr->e_rdr == INPUT || rdr->e_rdr == HEREDOC)
-			irdr = rdr;
+			input_rdr = rdr;
 		rdr = rdr->next;
 	}
-	if (ordr)
-		if (parse_redirections(ordr, mini, cmd) != 0)
-			return (1);
-	if (irdr)
-		if (parse_redirections(irdr, mini, cmd) != 0)
-			return (1);
+	if (output_rdr && parse_redirections(output_rdr, mini, cmd) != 0)
+		return (1);
+	if (input_rdr && parse_redirections(input_rdr, mini, cmd) != 0)
+		return (1);
 	mini++;
 	return (0);
 }
 
-int	file_no_exist(t_mini *mini, t_rdr *trdr)
+int	handle_nonexistent_file(t_mini *mini, t_rdr *trdr)
 {
 	t_rdr	*rdr;
 
@@ -51,16 +49,16 @@ int	file_no_exist(t_mini *mini, t_rdr *trdr)
 	{
 		rdr->fd = open(rdr->file, O_RDWR | O_TRUNC | O_CREAT, 0644);
 		if (rdr->fd == -1)
-			ft_exit_shell(mini, errno, strerror(errno), 2);
-		close (rdr->fd);
+			exit_shell(mini, errno, strerror(errno), 2);
+		close(rdr->fd);
 		rdr->fd = -1;
 	}
 	else if (rdr->e_rdr == APPEND)
 	{
 		rdr->fd = open(rdr->file, O_RDWR | O_APPEND | O_CREAT, 0644);
 		if (rdr->fd == -1)
-			ft_exit_shell(mini, errno, strerror(errno), 2);
-		close (rdr->fd);
+			exit_shell(mini, errno, strerror(errno), 2);
+		close(rdr->fd);
 		rdr->fd = -1;
 	}
 	else if (rdr->e_rdr == INPUT)
@@ -68,7 +66,7 @@ int	file_no_exist(t_mini *mini, t_rdr *trdr)
 	return (0);
 }
 
-int	ft_return_redirect_code(t_rdr *rdr)
+int	return_redirect_error_code(t_rdr *rdr)
 {
 	if (rdr->e_rdr == INPUT)
 	{
@@ -83,7 +81,7 @@ int	ft_return_redirect_code(t_rdr *rdr)
 	return (0);
 }
 
-int	check_file_rights(t_mini *mini, t_rdr *trdr)
+int	check_file_permissions(t_mini *mini, t_rdr *trdr)
 {
 	t_rdr	*rdr;
 
@@ -96,19 +94,19 @@ int	check_file_rights(t_mini *mini, t_rdr *trdr)
 		{
 			rdr->fd = open(rdr->file, O_RDWR | O_TRUNC, 0644);
 			if (rdr->fd == -1)
-				ft_exit_shell(mini, errno, strerror(errno), 2);
-			rdr->fd = close (rdr->fd);
+				exit_shell(mini, errno, strerror(errno), 2);
+			rdr->fd = close(rdr->fd);
 			if (rdr->fd == -1)
-				ft_exit_shell(mini, errno, strerror(errno), 2);
+				exit_shell(mini, errno, strerror(errno), 2);
 			rdr->fd = -2;
 		}
 	}
 	else
-		return (ft_return_redirect_code(rdr));
+		return (return_redirect_error_code(rdr));
 	return (0);
 }
 
-int	ft_redirect(t_mini *mini, t_cmd *cmd)
+int	handle_redirect(t_mini *mini, t_cmd *cmd)
 {
 	t_rdr	*rdr;
 	int		flag;
@@ -120,13 +118,13 @@ int	ft_redirect(t_mini *mini, t_cmd *cmd)
 	while (rdr != NULL && flag == 0)
 	{
 		if (rdr->e_rdr != HEREDOC && access(rdr->file, F_OK) != EXIST)
-			flag = file_no_exist(mini, rdr);
-		else if (rdr->e_rdr != HEREDOC && check_file_rights(mini, rdr))
+			flag = handle_nonexistent_file(mini, rdr);
+		else if (rdr->e_rdr != HEREDOC && check_file_permissions(mini, rdr))
 			flag = 1;
 		rdr = rdr->next;
 	}
 	if (flag != 0)
-		g_exit_code = error_set_print_close(mini, cmd, 1);
+		g_exit_code = handle_error_set_print_close(mini, cmd, 1);
 	else
 		g_exit_code = parse_redirect(mini, cmd);
 	return (g_exit_code);

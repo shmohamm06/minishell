@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:51:15 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:07:56 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:21:10 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	take_input(t_mini *mini)
 	{
 		mini->rl = read_line_colored();
 		if (mini->rl == NULL)
-			ft_exit_shell(mini, 0, "exit", 1);
+			exit_shell(mini, 0, "exit", 1);
 		if (mini->rl[0] != '\0')
 			add_history(mini->rl);
 		ft_tokenize(mini);
 		if (mini->token)
-			ft_parse_token(mini, mini->token);
+			parse_tokens(mini, mini->token);
 		if (mini->l_cmd)
-			parse_input(mini);
-		ft_free_cycle(mini);
+			parse_user_input(mini);
+		free_mini_cycle(mini);
 		event();
 	}
 }
@@ -38,6 +38,11 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_mini	mini;
 
+	if (argc != 1)
+	{
+		write(1, "Minishell does not accept args\n", 31);
+		return (1);
+	}
 	(void)argc;
 	(void)argv;
 	ft_bzero(&mini, sizeof(t_mini));

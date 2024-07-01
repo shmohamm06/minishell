@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:58 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:06:00 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:26:24 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "../execution/execution.h"
 
-enum e_tokentype	ft_label_token(char c)
+enum e_tokentype	label_token(char c)
 {
 	if (c == ' ' || c == '\t')
 		return (SPACES);
@@ -31,7 +31,8 @@ enum e_tokentype	ft_label_token(char c)
 	return (WORD);
 }
 
-void	ft_eovchr(size_t *i, const char *str, enum e_tokentype *type)
+void	evaluate_over_character(size_t *i, const char *str,
+		enum e_tokentype *type)
 {
 	if (!ft_isalpha(*str) && *str != '\'' && *str != '\"' && *str != '_'
 		&& *str != '?')
@@ -43,17 +44,17 @@ void	ft_eovchr(size_t *i, const char *str, enum e_tokentype *type)
 		*i = 2;
 }
 
-void	ft_next_token(t_mini *mini, t_token *new, char *line)
+void	next_token(t_mini *mini, t_token *new, char *line)
 {
 	enum e_tokentype	type;
 	size_t				i;
 
-	type = ft_label_token(*line);
+	type = label_token(*line);
 	i = 1;
 	if (type == VARIABLE)
-		ft_eovchr(&i, line + 1, &type);
+		evaluate_over_character(&i, line + 1, &type);
 	if (type == WORD || type == SPACES)
-		while (line[i] && ft_label_token(line[i]) == type)
+		while (line[i] && label_token(line[i]) == type)
 			i++;
 	if (type == REDIRECTION && *line == line[i])
 		i++;
@@ -62,10 +63,10 @@ void	ft_next_token(t_mini *mini, t_token *new, char *line)
 	new->type = type;
 	new->content = ft_substr(line, 0, i);
 	if (!new->content)
-		ft_exit_shell(mini, 137, "Page allocation failure", 2);
+		exit_shell(mini, 137, "Allocation failure", 2);
 }
 
-void	ft_tokenlist(t_mini *mini)
+void	tokenize_input(t_mini *mini)
 {
 	t_token	*new;
 	t_token	*prev;
@@ -77,8 +78,8 @@ void	ft_tokenlist(t_mini *mini)
 	{
 		new = (t_token *)ft_calloc(1, sizeof(t_token));
 		if (!new)
-			ft_exit_shell(mini, 137, "Page allocation failure", 2);
-		ft_next_token(mini, new, (mini->rl + offset));
+			exit_shell(mini, 137, "Allocation failure", 2);
+		next_token(mini, new, (mini->rl + offset));
 		offset += ft_strlen(new->content);
 		new->prev = prev;
 		if (prev)
@@ -89,7 +90,7 @@ void	ft_tokenlist(t_mini *mini)
 	}
 }
 
-void	print_linked_list_by_type(t_token *head)
+void	print_token_list_by_type(t_token *head)
 {
 	t_token			*current;
 	t_token_groups	groups;
@@ -106,5 +107,4 @@ void	print_linked_list_by_type(t_token *head)
 		concatenate_token(&groups, current);
 		current = current->next;
 	}
-	print_token_groups(&groups);
 }

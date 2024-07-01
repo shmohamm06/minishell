@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:13 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:07:20 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-void	exec_children_cmds(t_mini *mini, t_cmd *cmd)
+void	execute_command_sequence(t_mini *mini, t_cmd *cmd)
 {
-	if (ft_redirect(mini, cmd) != 0)
-		ft_exit_shell(mini, g_exit_code, NULL, 1);
+	if (handle_redirect(mini, cmd) != 0)
+		exit_shell(mini, g_exit_code, NULL, 1);
 	if (cmd->arg[0] && builtin_check(mini, cmd) == 0)
 	{
-		close_rdr_back(cmd);
-		ft_exit_shell(mini, g_exit_code, NULL, 1);
+		close_redirector_back(cmd);
+		exit_shell(mini, g_exit_code, NULL, 1);
 	}
 	else if (cmd->arg[0] && access(cmd->arg[0], X_OK) == 0)
 		execute_in_directory(mini, cmd);
 	else if (cmd->arg[0])
 		execute_path_command(mini, cmd);
-	close_rdr_back(cmd);
-	ft_exit_shell(mini, g_exit_code, NULL, 2);
+	close_redirector_back(cmd);
+	exit_shell(mini, g_exit_code, NULL, 2);
 }
 
-void	execute_in_child(t_mini *mini)
+void	execute_commands_in_child(t_mini *mini)
 {
 	t_cmd	*cmd;
 
@@ -40,21 +40,21 @@ void	execute_in_child(t_mini *mini)
 	{
 		cmd->fork_id = fork();
 		if (cmd->fork_id == 0)
-			exec_children_cmds(mini, cmd);
+			execute_command_sequence(mini, cmd);
 		else
 			cmd = cmd->next;
 	}
-	wait_for_children(mini);
+	wait_for_child_processes(mini);
 }
 
-void	parse_input(t_mini *mini)
+void	parse_user_input(t_mini *mini)
 {
 	t_cmd	*cmd;
 
 	cmd = mini->l_cmd;
-	handle_heredoc(mini);
-	if (is_parent_compatible(cmd))
-		execute_in_parent(mini);
+	handle_heredoc_commands(mini);
+	if (check_parent_compatibility(cmd))
+		execute_commands_in_parent(mini);
 	else
-		execute_in_child(mini);
+		execute_commands_in_child(mini);
 }

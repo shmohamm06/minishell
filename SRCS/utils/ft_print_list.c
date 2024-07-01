@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:31 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:10:08 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
  * 
  * @param split 
  */
-void	ft_print_split(char **split)
+void	print_split(char **split)
 {
 	while (*split)
 		printf("%s¶ ", *split++);
 }
 
-void	print_rdr(t_rdr	*rdr)
+void	print_redirections(t_rdr *rdr)
 {
 	while (rdr != NULL)
 	{
@@ -48,7 +48,7 @@ void	print_rdr(t_rdr	*rdr)
  * 
  * @param s_head 
  */
-void	ft_print_cmd(t_cmd *s_head)
+void	print_commands(t_cmd *s_head)
 {
 	int		list;
 	t_cmd	*current;
@@ -62,13 +62,13 @@ void	ft_print_cmd(t_cmd *s_head)
 		if (current->arg[0])
 		{
 			printf("| Command: %s, args: ", current->arg[0]);
-			ft_print_split(current->arg + 1);
+			print_split(current->arg + 1);
 		}
 		else
 			printf("| Command: (null)");
 		printf("\n| Redirections: ");
 		rdr = current->rdr;
-		print_rdr(rdr);
+		print_redirections(rdr);
 		printf("\n------------ cmd %d -------------\n", list);
 		printf("\n\n");
 		current = current->next;
@@ -82,15 +82,15 @@ void	ft_print_cmd(t_cmd *s_head)
  * @param s_mini 
  * @param error 
  */
-void	ft_exit_shell(t_mini *s_mini, int error, char *p_err, int fd)
+void	exit_shell(t_mini *s_mini, int error, char *p_err, int fd)
 {
 	g_exit_code = error;
 	if (p_err)
 		fd_printf(fd, "%s\n", p_err);
-	close_all_fds(s_mini);
-	ft_free_all(s_mini);
-	ft_close(0, 0, NULL);
-	ft_close(1, 0, NULL);
-	ft_close(2, 0, NULL);
+	close_all_file_descriptors(s_mini);
+	free_mini_all(s_mini);
+	close_file_descriptor(0, 0, NULL);
+	close_file_descriptor(1, 0, NULL);
+	close_file_descriptor(2, 0, NULL);
 	exit(g_exit_code);
 }

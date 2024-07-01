@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:58 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:30 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:22:06 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-int	ft_close(int fd, int limit, t_cmd *cmd)
+int	close_file_descriptor(int fd, int limit, t_cmd *cmd)
 {
 	int	ret;
 
@@ -34,7 +34,7 @@ int	ft_close(int fd, int limit, t_cmd *cmd)
 	return (-2);
 }
 
-void	close_all_fds(t_mini *mini)
+void	close_all_file_descriptors(t_mini *mini)
 {
 	t_cmd	*cmd;
 	t_rdr	*rdr;
@@ -47,11 +47,11 @@ void	close_all_fds(t_mini *mini)
 		{
 			while (rdr)
 			{
-				rdr->dup2_fd = ft_close (rdr->dup2_fd, 3, cmd);
-				rdr->fd = ft_close (rdr->fd, 3, cmd);
-				rdr->fdpipe[0] = ft_close (rdr->fdpipe[0], 3, cmd);
-				rdr->fdpipe[1] = ft_close (rdr->fdpipe[1], 3, cmd);
-				rdr->og_fd = ft_close (rdr->og_fd, 3, cmd);
+				rdr->dup2_fd = close_file_descriptor(rdr->dup2_fd, 3, cmd);
+				rdr->fd = close_file_descriptor(rdr->fd, 3, cmd);
+				rdr->fdpipe[0] = close_file_descriptor(rdr->fdpipe[0], 3, cmd);
+				rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
+				rdr->og_fd = close_file_descriptor(rdr->og_fd, 3, cmd);
 				rdr = rdr->next;
 			}
 		}

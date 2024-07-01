@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:05:37 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 13:57:13 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:29:45 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "../execution/execution.h"
 
-bool	ft_evalops(t_token *head, t_mini *mini)
+bool	evaluate_operators(t_token *head, t_mini *mini)
 {
 	t_token	*current;
 
@@ -31,10 +31,10 @@ bool	ft_evalops(t_token *head, t_mini *mini)
 		return (true);
 	}
 	else
-		return (ft_evalrdr(current, mini));
+		return (evaluate_redirection(current, mini));
 }
 
-bool	ft_evaltokens(t_mini *mini)
+bool	evaluate_tokens(t_mini *mini)
 {
 	t_token	*current;
 
@@ -42,7 +42,7 @@ bool	ft_evaltokens(t_mini *mini)
 	while (current)
 	{
 		if ((current->type == PIPE || current->type == REDIRECTION)
-			&& !ft_evalops(current, mini))
+			&& !evaluate_operators(current, mini))
 		{
 			fd_printf(2, "minishell: syntax error near unexpected token\n");
 			g_exit_code = 258;
@@ -60,7 +60,7 @@ bool	ft_evaltokens(t_mini *mini)
 	return (true);
 }
 
-void	ft_expandvar(t_mini *mini)
+void	expand_variables(t_mini *mini)
 {
 	t_token	*current;
 	t_env	*l_env;

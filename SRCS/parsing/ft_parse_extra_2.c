@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:29:02 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 16:45:20 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:38:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ char	*ft_strjoin_free(char *s1, const char *s2)
 
 void	ft_tokenize(t_mini *mini)
 {
-	ft_tokenlist(mini);
-	print_linked_list_by_type(mini->l_token);
-	if (!ft_evaltokens(mini))
+	tokenize_input(mini);
+	print_token_list_by_type(mini->l_token);
+	if (!evaluate_tokens(mini))
 		return ;
-	ft_expandvar(mini);
-	ft_collapsequotes(mini);
-	mini->token = convert_linked_list(mini->l_token);
-	printf("\n\n");
+	expand_variables(mini);
+	collapse_quotes(mini);
+	mini->token = token_list_to_array(mini->l_token);
 }
-// print_linked_list_by_type(mini->l_token);

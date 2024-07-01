@@ -26,7 +26,6 @@ SRCS	=	SRCS/main.c \
 			SRCS/parsing/ft_tokenizer_3.c \
 			SRCS/utils/ft_free_list.c \
 			SRCS/utils/ft_print_list.c \
-			SRCS/utils/temp_funs.c \
 			SRCS/execution/env_conv.c \
 			SRCS/execution/get_path_srcs.c \
 			SRCS/execution/design.c \

@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:38 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:03:57 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:30:35 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int	parse_redirections(t_rdr *trdr, t_mini *mini, t_cmd *cmd)
 	else if (rdr->e_rdr == APPEND)
 		flag = duplicate_append_fd(rdr);
 	else if (rdr->e_rdr == HEREDOC)
-		flag = ft_pipe_heredoc(rdr, mini, cmd);
+		flag = execute_pipe_heredoc(rdr, mini, cmd);
 	return (flag);
 }

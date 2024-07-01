@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/28 14:58:43 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:29:32 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,13 +169,13 @@ int						random_between(int min, int max);
 // parsing
 
 void					ft_tokenize(t_mini *mini);
-int						ft_check_rdr(char *string);
-void					ft_populate_cmd(t_mini *mini, t_cmd *cmd, char **token,
+int						is_redirection(char *string);
+void					populate_cmd(t_mini *mini, t_cmd *cmd, char **token,
 							int i[0]);
-int						ft_count_till_pipe(char **token);
+int						count_till_pipe(char **token);
 void					ft_parse_env(t_mini *mini, const char **envp);
-void					ft_parse_token(t_mini *mini, char **token);
-void					set_env_underscore(char *cmd, t_mini *mini);
+void					parse_tokens(t_mini *mini, char **token);
+void					set_env_var(char *cmd, t_mini *mini);
 void	concatenate_token(t_token_groups *groups,
 						t_token *current);
 void					print_token_groups(t_token_groups *groups);
@@ -184,35 +184,36 @@ char					*ft_strjoin_free(char *s1, const char *s2);
 
 // frees
 
-void					ft_free_cmd(t_cmd *s_cmd);
-void					ft_free_ltoken(t_token *list);
-void					ft_free_env(t_env *env_list);
-void					ft_free_cycle(t_mini *mini);
-void					ft_free_all(t_mini *mini);
+void					free_command_list(t_cmd *s_cmd);
+void					free_token_list(t_token *list);
+void					free_environment_list(t_env *env_list);
+void					free_mini_cycle(t_mini *mini);
+void					free_mini_all(t_mini *mini);
 
 // exit shell
 
-void					ft_exit_shell(t_mini *m, int er, char *p_er, int fd);
+void					exit_shell(t_mini *m, int er, char *p_er, int fd);
 
 // utils
 
-void					ft_print_cmd(t_cmd *s_head);
-void					ft_print_split(char **split);
+void					print_commands(t_cmd *s_head);
+void					print_split(char **split);
 
 // parse_extra.c
-char					*ft_addmidstr(char *start, t_env *match, size_t i,
+char					**token_list_to_array(t_token *head);
+char					*add_middle_string(char *start, t_env *match, size_t i,
 							t_mini *mini);
-char					*ft_str_expand(char *quote, t_mini *mini);
-void					ft_collapsequotes(t_mini *mini);
-char					**convert_linked_list(t_token *head);
+char					*expand_string(char *quote, t_mini *mini);
+void					collapse_quotes(t_mini *mini);
+char					**token_list_to_array(t_token *head);
 void					ft_tokenize(t_mini *mini);
-void					ft_eovchr(size_t *i, const char *str,
+void					evaluate_over_character(size_t *i, const char *str,
 							enum e_tokentype *type);
-void					ft_tokenlist(t_mini *mini);
-void					print_linked_list_by_type(t_token *head);
-bool					ft_evaltokens(t_mini *mini);
-bool					ft_evalrdr(t_token *head, t_mini *mini);
-void					ft_expandvar(t_mini *mini);
+void					tokenize_input(t_mini *mini);
+void					print_token_list_by_type(t_token *head);
+bool					evaluate_tokens(t_mini *mini);
+bool					evaluate_redirection(t_token *head, t_mini *mini);
+void					expand_variables(t_mini *mini);
 
 // global exit code
 
@@ -221,6 +222,6 @@ int						g_exit_code;
 // void	exit_and_print(int code);
 // void	exit_success(char **args, t_mini *mini);
 
-// int		error_set_print_close(t_mini *mini, t_cmd *cmd, int error);
+// int		handle_error_set_print_close(t_mini *mini, t_cmd *cmd, int error);
 
 #endif

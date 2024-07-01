@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:43 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:39 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-void	close_rdr_files(t_mini *mini, t_cmd *cmd)
+void	close_redirector_files(t_mini *mini, t_cmd *cmd)
 {
 	t_rdr	*rdr;
 	int		fd;
@@ -26,7 +26,7 @@ void	close_rdr_files(t_mini *mini, t_cmd *cmd)
 		{
 			fd = close(rdr->fd);
 			if (fd != 0)
-				ft_exit_shell(mini, errno, strerror(errno), 2);
+				exit_shell(mini, errno, strerror(errno), 2);
 			else
 				rdr->fd = -2;
 		}
@@ -34,43 +34,43 @@ void	close_rdr_files(t_mini *mini, t_cmd *cmd)
 	}
 }
 
-int	error_set_print_close(t_mini *mini, t_cmd *cmd, int error)
+int	handle_error_set_print_close(t_mini *mini, t_cmd *cmd, int error)
 {
 	g_exit_code = error;
-	fd_printf (2, "minishell: %s\n", strerror(errno));
-	close_rdr_files(mini, cmd);
+	fd_printf(2, "minishell: %s\n", strerror(errno));
+	close_redirector_files(mini, cmd);
 	return (1);
 }
 
-void	ft_close_rdr_backv2(t_rdr *ordr, t_rdr *irdr)
+void	close_file_descriptor_rdr_backv2(t_rdr *ordr, t_rdr *irdr)
 {
 	if (ordr)
 	{
-		ordr->dup2_fd = ft_close(ordr->dup2_fd, 3, NULL);
+		ordr->dup2_fd = close_file_descriptor(ordr->dup2_fd, 3, NULL);
 		dup2(ordr->og_fd, STDOUT_FILENO);
-		ordr->og_fd = ft_close(ordr->og_fd, 3, NULL);
-		ordr->fd = ft_close(ordr->fd, 3, NULL);
+		ordr->og_fd = close_file_descriptor(ordr->og_fd, 3, NULL);
+		ordr->fd = close_file_descriptor(ordr->fd, 3, NULL);
 	}
 	if (irdr)
 	{
 		if (irdr->e_rdr == HEREDOC)
 		{
-			irdr->dup2_fd = ft_close (irdr->dup2_fd, 3, NULL);
-			irdr->fdpipe[0] = ft_close (irdr->fdpipe[0], 3, NULL);
+			irdr->dup2_fd = close_file_descriptor(irdr->dup2_fd, 3, NULL);
+			irdr->fdpipe[0] = close_file_descriptor(irdr->fdpipe[0], 3, NULL);
 			dup2(irdr->og_fd, STDIN_FILENO);
-			irdr->og_fd = ft_close (irdr->og_fd, 3, NULL);
+			irdr->og_fd = close_file_descriptor(irdr->og_fd, 3, NULL);
 		}
 		else
 		{
-			irdr->dup2_fd = ft_close(irdr->dup2_fd, 3, NULL);
+			irdr->dup2_fd = close_file_descriptor(irdr->dup2_fd, 3, NULL);
 			dup2(irdr->og_fd, STDIN_FILENO);
-			irdr->og_fd = ft_close(irdr->og_fd, 3, NULL);
-			irdr->fd = ft_close(irdr->fd, 3, NULL);
+			irdr->og_fd = close_file_descriptor(irdr->og_fd, 3, NULL);
+			irdr->fd = close_file_descriptor(irdr->fd, 3, NULL);
 		}
 	}
 }
 
-void	close_rdr_back(t_cmd *cmd)
+void	close_redirector_back(t_cmd *cmd)
 {
 	t_rdr	*rdr;
 	t_rdr	*ordr;
@@ -89,5 +89,5 @@ void	close_rdr_back(t_cmd *cmd)
 			irdr = rdr;
 		rdr = rdr->next;
 	}
-	ft_close_rdr_backv2(ordr, irdr);
+	close_file_descriptor_rdr_backv2(ordr, irdr);
 }

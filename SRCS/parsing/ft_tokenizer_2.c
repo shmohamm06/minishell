@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:03:58 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 13:57:13 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:28:32 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,7 @@ void	concatenate_token(t_token_groups *groups, t_token *current)
 	}
 }
 
-void	print_token_groups(t_token_groups *groups)
-{
-	if (strlen(groups->single))
-		printf("[SINGLE] %s\n", groups->single);
-	if (strlen(groups->doubleq))
-		printf("[DOUBLE] %s\n", groups->doubleq);
-	if (strlen(groups->variable))
-		printf("[VARIABLE] %s\n", groups->variable);
-	if (strlen(groups->redirection))
-		printf("[REDIRECTION] %s\n", groups->redirection);
-	if (strlen(groups->pipe))
-		printf("[PIPE] %s\n", groups->pipe);
-	if (strlen(groups->word))
-		printf("[WORD] %s\n", groups->word);
-}
-
-void	pop_middle_node(t_token **list, t_token *node)
+void	remove_middle_node(t_token **list, t_token *node)
 {
 	if (*list == NULL || node == NULL)
 		return ;
@@ -60,33 +44,33 @@ void	pop_middle_node(t_token **list, t_token *node)
 		*list = node->next;
 	node->prev = NULL;
 	node->next = NULL;
-	ft_free_ltoken(node);
+	free_token_list(node);
 }
 
-bool	ft_evalvar(char *name, t_mini *mini)
+bool	evaluate_variable(char *name, t_mini *mini)
 {
 	char	**split;
-	size_t	word_count;
+	size_t	count_words;
 	t_env	*env;
 
-	word_count = 0;
+	count_words = 0;
 	env = find_env_variable(name, mini);
 	if (!env || !env->initialised)
 		return (false);
 	if (env && env->initialised)
 	{
 		split = ft_split(env->value, ' ');
-		while (split[word_count])
-			word_count++;
+		while (split[count_words])
+			count_words++;
 		ft_free_split(split);
 	}
-	if (word_count != 1)
+	if (count_words != 1)
 		return (false);
 	else
 		return (true);
 }
 
-bool	ft_evalrdr(t_token *head, t_mini *mini)
+bool	evaluate_redirection(t_token *head, t_mini *mini)
 {
 	t_token	*current;
 
@@ -101,7 +85,7 @@ bool	ft_evalrdr(t_token *head, t_mini *mini)
 		&& current->type != REDIRECTION)
 	{
 		if (current->type == VARIABLE)
-			if (!ft_evalvar(current->content, mini))
+			if (!evaluate_variable(current->content, mini))
 				return (false);
 		current = current->next;
 	}

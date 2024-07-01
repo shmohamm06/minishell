@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:35 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:35 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-void	null_params(char **tmp, char **total, char **line)
+void	reset_pointers(char **tmp, char **total, char **line)
 {
 	*tmp = NULL;
 	*total = NULL;
 	*line = NULL;
 }
 
-void	take_heredoc_input(t_rdr *rdr)
+void	handle_heredoc_commands_input(t_rdr *rdr)
 {
 	char	*input;
 	char	*total;
 	char	*tmp;
 	char	*line;
 
-	null_params(&tmp, &total, &line);
+	reset_pointers(&tmp, &total, &line);
 	while (1)
 	{
 		input = readline("> ");
@@ -50,24 +50,24 @@ void	take_heredoc_input(t_rdr *rdr)
 	rdr->file = total;
 }
 
-int	ft_pipe_heredoc(t_rdr *rdr, t_mini *mini, t_cmd *cmd)
+int	execute_pipe_heredoc(t_rdr *rdr, t_mini *mini, t_cmd *cmd)
 {
 	pipe(rdr->fdpipe);
 	rdr->ret = 0;
 	rdr->fork_id = fork();
 	if (rdr->fork_id == 0)
 	{
-		rdr->fdpipe[0] = ft_close(rdr->fdpipe[0], 3, cmd);
+		rdr->fdpipe[0] = close_file_descriptor(rdr->fdpipe[0], 3, cmd);
 		rdr->dup2_fd = dup2(rdr->fdpipe[1], STDOUT_FILENO);
 		if (rdr->file)
 			fd_printf(STDOUT_FILENO, "%s", rdr->file);
-		rdr->fdpipe[1] = ft_close (rdr->fdpipe[1], 3, cmd);
-		close_rdr_back(cmd);
-		ft_exit_shell(mini, 0, NULL, 2);
+		rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
+		close_redirector_back(cmd);
+		exit_shell(mini, 0, NULL, 2);
 	}
 	else
 	{
-		rdr->fdpipe[1] = ft_close (rdr->fdpipe[1], 3, cmd);
+		rdr->fdpipe[1] = close_file_descriptor(rdr->fdpipe[1], 3, cmd);
 		rdr->og_fd = dup(STDIN_FILENO);
 		rdr->dup2_fd = dup2(rdr->fdpipe[0], STDIN_FILENO);
 		waitpid(rdr->fork_id, &rdr->ret, WEXITSTATUS(rdr->ret));
@@ -75,7 +75,7 @@ int	ft_pipe_heredoc(t_rdr *rdr, t_mini *mini, t_cmd *cmd)
 	return (0);
 }
 
-void	handle_heredoc(t_mini *mini)
+void	handle_heredoc_commands(t_mini *mini)
 {
 	t_cmd	*cmd;
 	t_rdr	*rdr;
@@ -89,7 +89,7 @@ void	handle_heredoc(t_mini *mini)
 			while (rdr)
 			{
 				if (rdr->e_rdr == HEREDOC)
-					take_heredoc_input(rdr);
+					handle_heredoc_commands_input(rdr);
 				rdr = rdr->next;
 			}
 		}

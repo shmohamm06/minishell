@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:05:28 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	execute_in_directory(t_mini *mini, t_cmd *cmd)
 	if (execve(cmd->arg[0], cmd->arg, env_array) == -1)
 	{
 		ft_free_split(env_array);
-		ft_exit_shell(mini, errno, strerror(errno), 2);
+		exit_shell(mini, errno, strerror(errno), 2);
 	}
 }
 
@@ -57,7 +57,7 @@ void	execute_command_with_forking(t_mini *mini, t_cmd *cmd, char *cmd_path)
 	if (execve(cmd_path, cmd->arg, env_array) == -1)
 	{
 		ft_free_split(env_array);
-		ft_exit_shell(mini, errno, strerror(errno), 2);
+		exit_shell(mini, errno, strerror(errno), 2);
 	}
 	free(cmd_path);
 }

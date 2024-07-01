@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:32 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:36:47 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "../execution/execution.h"
 
-/**
- * @brief incriments shell lvl <SHLVL>
- * 
- * @param env 
- * @param mini 
- */
-
-void	set_env_underscore(char *cmd, t_mini *mini)
+void	set_env_var(char *cmd, t_mini *mini)
 {
 	t_env	*tmp;
 
@@ -34,11 +27,11 @@ void	set_env_underscore(char *cmd, t_mini *mini)
 	}
 	if (tmp == NULL)
 		return ;
-	free (tmp->value);
+	free(tmp->value);
 	tmp->value = ft_strdup(cmd);
 }
 
-void	add_shlvl(t_env *env)
+void	add_shlvl_var(t_env *env)
 {
 	t_env	*temp;
 	t_env	*new;
@@ -55,7 +48,7 @@ void	add_shlvl(t_env *env)
 	fd_printf(1, "SHLVL 1 added\n");
 }
 
-void	increase_shlvl(t_env *env)
+void	increment_shlvl(t_env *env)
 {
 	t_env	*tmp;
 	int		lvl;
@@ -79,20 +72,12 @@ void	increase_shlvl(t_env *env)
 		tmp = tmp->next;
 	}
 	if (!found)
-		add_shlvl(env);
+		add_shlvl_var(env);
 	else
 		fd_printf(1, "SHLVL increased to %d\n", lvl);
 }
 
-/**
- * @brief Parses through the enviroment <envp> and allocates the keys
- * and their values into a singly linked list.
- * 
- * @param envp 
- * @return The enviromental linked list
- */
-
-char	**add_basic_env(t_mini *mini)
+char	**create_basic_env(t_mini *mini)
 {
 	char	**envp;
 	char	cwd[2056];
@@ -110,7 +95,7 @@ char	**add_basic_env(t_mini *mini)
 	free(pwd);
 	envp = ft_split(full_env, ' ');
 	if (!envp)
-		ft_exit_shell(mini, 1, "add_basic_env", 2);
+		exit_shell(mini, 1, "create_basic_env", 2);
 	free(full_env);
 	return (envp);
 }
@@ -121,18 +106,18 @@ void	ft_parse_env(t_mini *mini, const char **envp)
 	t_env	*env_tail;
 
 	if (!envp || !envp[0])
-		envp = (const char **)add_basic_env(mini);
+		envp = (const char **)create_basic_env(mini);
 	env_tail = NULL;
 	while (*envp)
 	{
-		env_new = (t_env *) ft_calloc(1, sizeof(t_env));
+		env_new = (t_env *)ft_calloc(1, sizeof(t_env));
 		if (!env_new)
-			ft_exit_shell(mini, 137, "Page allocation failure\n", 2);
+			exit_shell(mini, 137, "Allocation failure\n", 2);
 		env_new->key = ft_substr(*envp, 0, (ft_strchr(*envp, '=') - *envp));
 		env_new->value = ft_strdup(ft_strchr(*envp++, '=') + 1);
 		env_new->initialised = true;
 		if (!env_new->key || !env_new->value)
-			ft_exit_shell(mini, 137, "Page allocation failure\n", 2);
+			exit_shell(mini, 137, "Allocation failure\n", 2);
 		env_new->next = NULL;
 		if (mini->l_env == NULL)
 			mini->l_env = env_new;
@@ -140,5 +125,5 @@ void	ft_parse_env(t_mini *mini, const char **envp)
 			env_tail->next = env_new;
 		env_tail = env_new;
 	}
-	increase_shlvl(mini->l_env);
+	increment_shlvl(mini->l_env);
 }
