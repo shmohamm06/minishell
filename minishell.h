@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 15:29:32 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:21:08 by wyaseen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@
 # include <term.h>
 # include <termios.h>
 
-//  signals
-# define SIG_CODE 256
-# define SIGINT_CODE (SIG_CODE + SIGINT)
-# define SIGQUIT_CODE (SIG_CODE + SIGQUIT)
+
 
 //	colors
 # define BLUE_FONT "\033[1;36m"
@@ -158,13 +155,12 @@ typedef struct s_token_groups
 }						t_token_groups;
 
 // // signals.c
-void					sigint_handler(int sig);
-void					sigquit_handler(int sig);
-void					event(void);
+void 					heredoc_prompt(void);
+void 					command_prompt(void);
 void					init_signals(void);
+void 					minishell_prompt(void);
+void 					signal_handler_parent(int signum);
 
-// temporary functions, tbc if they'd be used or not
-int						random_between(int min, int max);
 
 // parsing
 
