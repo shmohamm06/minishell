@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:03:58 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:09:26 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:57:13 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	ft_evalvar(char *name, t_mini *mini)
 	t_env	*env;
 
 	word_count = 0;
-	env = env_already_exist(name, mini);
+	env = find_env_variable(name, mini);
 	if (!env || !env->initialised)
 		return (false);
 	if (env && env->initialised)

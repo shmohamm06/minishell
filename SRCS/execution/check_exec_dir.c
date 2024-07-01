@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:25 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:06 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:59:50 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-int	is_directory(const char *path)
+int	is_path_directory(const char *path)
 {
 	struct stat	sb;
 
@@ -23,14 +23,14 @@ int	is_directory(const char *path)
 	return (0);
 }
 
-int	file_exists(const char *pathname)
+int	does_file_exist(const char *pathname)
 {
 	struct stat	sb;
 
 	return (stat(pathname, &sb) == 0);
 }
 
-int	dot_dir_check(t_cmd *cmd)
+int	handle_dot_command_check(t_cmd *cmd)
 {
 	if (!cmd->arg[0][0])
 	{
@@ -50,7 +50,7 @@ int	dot_dir_check(t_cmd *cmd)
 		g_exit_code = COMMAND_FAIL;
 		return (fd_printf(2, "minishell: ..: command not found\n"));
 	}
-	else if (is_directory(cmd->arg[0]))
+	else if (is_path_directory(cmd->arg[0]))
 	{
 		g_exit_code = 126;
 		return (fd_printf(2, "minishell: %s: is a directory\n", cmd->arg[0]));

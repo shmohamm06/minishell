@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:51:15 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/28 14:44:48 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/07/01 14:07:56 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,34 @@
 #include "built_ins/built_ins.h"
 #include "execution/execution.h"
 
-void take_input(t_mini *mini)
+void	take_input(t_mini *mini)
 {
-    init_signals();
-    while (1)
-    {
-        mini->rl = read_line_colored(random_between(1, 6));
-        if (mini->rl == NULL)
-            ft_exit_shell(mini, 0, "exit", 1);
-        if (mini->rl[0] != '\0')
-            add_history(mini->rl);
-        ft_tokenize(mini);
-        if (mini->token)
-            ft_parse_token(mini, mini->token);
-        if (mini->l_cmd)
-            parse_input(mini);
-        ft_free_cycle(mini);
-        event();
-    }
+	init_signals();
+	while (1)
+	{
+		mini->rl = read_line_colored();
+		if (mini->rl == NULL)
+			ft_exit_shell(mini, 0, "exit", 1);
+		if (mini->rl[0] != '\0')
+			add_history(mini->rl);
+		ft_tokenize(mini);
+		if (mini->token)
+			ft_parse_token(mini, mini->token);
+		if (mini->l_cmd)
+			parse_input(mini);
+		ft_free_cycle(mini);
+		event();
+	}
 }
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-    t_mini mini;
+	t_mini	mini;
 
-    (void) argc;
-    (void) argv;
-    ft_bzero(&mini, sizeof(t_mini));
-    ft_parse_env(&mini, (const char **)envp);
-    take_input(&mini);
-
-    return 0;
+	(void)argc;
+	(void)argv;
+	ft_bzero(&mini, sizeof(t_mini));
+	ft_parse_env(&mini, (const char **)envp);
+	take_input(&mini);
+	return (0);
 }

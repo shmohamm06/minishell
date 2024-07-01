@@ -6,17 +6,17 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:50 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:50 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:54:31 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "built_ins.h"
 #include "../execution/execution.h"
+#include "built_ins.h"
 
 // prints the env in special format with
 //the uninitialised values
-void	print_export(t_mini *mini)
+void	print_export_list(t_mini *mini)
 {
 	t_env	*env;
 
@@ -43,9 +43,9 @@ void	print_export(t_mini *mini)
 	g_exit_code = SUCCESS;
 }
 
-// it sets the key of the env to whatever is before the 
+// it sets the key of the env to whatever is before the
 // first occurance of '='
-char	*set_env_key(char *arg)
+char	*extract_env_key(char *arg)
 {
 	int		i;
 	char	*new_key;
@@ -67,7 +67,7 @@ char	*set_env_key(char *arg)
 // stes the value of a key to either NULL if there
 // is no initialisation with '=' or else to whatever
 // after the first occurance of '='
-char	*set_env_value(char *arg, t_env *new)
+char	*extract_env_value(char *arg, t_env *new)
 {
 	char	*value;
 
@@ -91,7 +91,7 @@ char	*set_env_value(char *arg, t_env *new)
 // environmental variables by calling set_value and set_key
 // functions. It then itrates to the end of the linked list
 // and sets the tail's next to the new node
-void	add_to_env(char *arg, t_mini *mini)
+void	add_env_variable(char *arg, t_mini *mini)
 {
 	t_env	*temp;
 	t_env	*new;
@@ -99,8 +99,8 @@ void	add_to_env(char *arg, t_mini *mini)
 	temp = mini->l_env;
 	new = ft_calloc(1, sizeof(t_env));
 	new->next = NULL;
-	new->value = set_env_value(arg, new);
-	new->key = set_env_key(arg);
+	new->value = extract_env_value(arg, new);
+	new->key = extract_env_key(arg);
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new;
@@ -111,7 +111,7 @@ void	add_to_env(char *arg, t_mini *mini)
 // checks if there is no number or '=' then checks
 // if the argument before the first = has any white spaces
 // or invalid character other than '_'
-int	check_valid_identifier(char *arg)
+int	is_valid_identifier(char *arg)
 {
 	int		i;
 	size_t	d;

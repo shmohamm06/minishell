@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:38 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:19 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:03:57 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-int	ft_dup2_output(t_rdr *rdr)
+int	duplicate_output_fd(t_rdr *rdr)
 {
 	rdr->og_fd = dup(STDOUT_FILENO);
 	rdr->fd = open(rdr->file, O_RDWR | O_TRUNC | O_CREAT, 0644);
@@ -27,7 +27,7 @@ int	ft_dup2_output(t_rdr *rdr)
 	return (0);
 }
 
-int	ft_dup2_input(t_rdr *rdr)
+int	duplicate_input_fd(t_rdr *rdr)
 {
 	rdr->og_fd = dup(STDIN_FILENO);
 	rdr->fd = open(rdr->file, O_RDONLY);
@@ -40,7 +40,7 @@ int	ft_dup2_input(t_rdr *rdr)
 	return (0);
 }
 
-int	ft_dup2_append(t_rdr *rdr)
+int	duplicate_append_fd(t_rdr *rdr)
 {
 	rdr->og_fd = dup(STDOUT_FILENO);
 	rdr->fd = open(rdr->file, O_RDWR | O_APPEND, 0644);
@@ -53,7 +53,7 @@ int	ft_dup2_append(t_rdr *rdr)
 	return (0);
 }
 
-int	parse_dups(t_rdr *trdr, t_mini *mini, t_cmd *cmd)
+int	parse_redirections(t_rdr *trdr, t_mini *mini, t_cmd *cmd)
 {
 	t_rdr	*rdr;
 	int		flag;
@@ -61,11 +61,11 @@ int	parse_dups(t_rdr *trdr, t_mini *mini, t_cmd *cmd)
 	flag = 0;
 	rdr = trdr;
 	if (rdr->e_rdr == OUTPUT)
-		flag = ft_dup2_output(rdr);
+		flag = duplicate_output_fd(rdr);
 	else if (rdr->e_rdr == INPUT)
-		flag = ft_dup2_input(rdr);
+		flag = duplicate_input_fd(rdr);
 	else if (rdr->e_rdr == APPEND)
-		flag = ft_dup2_append(rdr);
+		flag = duplicate_append_fd(rdr);
 	else if (rdr->e_rdr == HEREDOC)
 		flag = ft_pipe_heredoc(rdr, mini, cmd);
 	return (flag);

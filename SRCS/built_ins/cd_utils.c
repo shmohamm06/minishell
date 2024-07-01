@@ -6,15 +6,15 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:18 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:49 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:53:23 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "built_ins.h"
 #include "../execution/execution.h"
+#include "built_ins.h"
 
-char	*find_str_env(char *arg, t_mini *mini, int flag)
+char	*get_env_value_or_key(char *arg, t_mini *mini, int flag)
 {
 	t_env	*temp;
 
@@ -32,38 +32,38 @@ char	*find_str_env(char *arg, t_mini *mini, int flag)
 	return (NULL);
 }
 
-void	set_env_pwd(t_mini *mini)
+void	update_pwd_env(t_mini *mini)
 {
-	char	cwd[2056];
+	char	cwd[PATH_MAX];
 	char	*pwd;
 
 	pwd = ft_strjoin("PWD=", getcwd(cwd, sizeof(cwd)));
 	if (!pwd)
 	{
-		fd_printf(2, "minishell: error in set_env_pwd\n");
+		fd_printf(2, "minishell: error in update_pwd_env\n");
 		return ;
 	}
 	parse_new_export(pwd, mini);
 	free(pwd);
 }
 
-void	set_old_pwd(t_mini *mini, char *old_pwd)
+void	update_oldpwd_env(t_mini *mini, char *old_pwd)
 {
 	char	*old;
 
 	old = ft_strjoin("OLDPWD=", old_pwd);
 	if (!old)
 	{
-		fd_printf(2, "minishell: error in set_old_pwd\n");
+		fd_printf(2, "minishell: error in update_oldpwd_env\n");
 		return ;
 	}
 	parse_new_export(old, mini);
 	free(old);
 }
 
-void	cd_return_success(t_mini *mini, char *old_pwd)
+void	handle_cd_success(t_mini *mini, char *old_pwd)
 {
 	g_exit_code = SUCCESS;
-	set_env_pwd(mini);
-	set_old_pwd(mini, old_pwd);
+	update_pwd_env(mini);
+	update_oldpwd_env(mini, old_pwd);
 }

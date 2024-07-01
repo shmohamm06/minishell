@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:26 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/28 14:26:07 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/07/01 13:58:17 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "built_ins.h"
 #include "../execution/execution.h"
 
-int	check_valid_identifier_export(char *arg)
+int	is_valid_identifier_export(char *arg)
 {
 	int		i;
 	size_t	d;
@@ -32,9 +32,9 @@ int	check_valid_identifier_export(char *arg)
 		return (0);
 }
 
-int	check_unset_args(char *arg)
+int	should_unset_arg(char *arg)
 {
-	if (!arg || !arg[0] || check_valid_identifier_export(arg))
+	if (!arg || !arg[0] || is_valid_identifier_export(arg))
 	{
 		g_exit_code = UNSET_FLAG;
 		return (1);
@@ -42,7 +42,7 @@ int	check_unset_args(char *arg)
 	return (0);
 }
 
-void	free_single_env(t_env *node)
+void	free_env_node(t_env *node)
 {
 	free(node->key);
 	free(node->value);
@@ -60,7 +60,7 @@ void	delete_env_list(char *arg, t_mini *mini)
 	if (temp != NULL && ft_strncmp(temp->key, arg, ft_strlen(arg) + 1) == 0)
 	{
 		mini->l_env = temp->next;
-		free_single_env(temp);
+		free_env_node(temp);
 		return ;
 	}
 	while (temp != NULL && ft_strncmp(arg, temp->key, ft_strlen(arg) + 1))
@@ -75,7 +75,7 @@ void	delete_env_list(char *arg, t_mini *mini)
 	}
 	printf("%s found and deleted\n", arg);
 	prev->next = temp->next;
-	free_single_env(temp);
+	free_env_node(temp);
 }
 
 void	ft_unset(char **args, t_mini *mini)
@@ -90,7 +90,7 @@ void	ft_unset(char **args, t_mini *mini)
 	}
 	while (args[i] != NULL)
 	{
-		if (check_unset_args(args[i]))
+		if (should_unset_arg(args[i]))
 			fd_printf(2, "minishell: unset: `%s': not a valid identifier\n",
 				args[i]);
 		else

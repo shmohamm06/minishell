@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:48 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:41 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:01:53 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	parse_redirect(t_mini *mini, t_cmd *cmd)
 		rdr = rdr->next;
 	}
 	if (ordr)
-		if (parse_dups(ordr, mini, cmd) != 0)
+		if (parse_redirections(ordr, mini, cmd) != 0)
 			return (1);
 	if (irdr)
-		if (parse_dups(irdr, mini, cmd) != 0)
+		if (parse_redirections(irdr, mini, cmd) != 0)
 			return (1);
 	mini++;
 	return (0);

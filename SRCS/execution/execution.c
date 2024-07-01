@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:13 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:27 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:07:20 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	exec_children_cmds(t_mini *mini, t_cmd *cmd)
 		ft_exit_shell(mini, g_exit_code, NULL, 1);
 	}
 	else if (cmd->arg[0] && access(cmd->arg[0], X_OK) == 0)
-		execute_in_dir(mini, cmd);
+		execute_in_directory(mini, cmd);
 	else if (cmd->arg[0])
-		execute_pathed_cmd(mini, cmd);
+		execute_path_command(mini, cmd);
 	close_rdr_back(cmd);
 	ft_exit_shell(mini, g_exit_code, NULL, 2);
 }

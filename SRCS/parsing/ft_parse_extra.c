@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:55:06 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 17:23:01 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:57:13 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_str_expand(char *quote, t_mini *mini)
 	ft_eovchr(&i, start + 1, (enum e_tokentype[]){VARIABLE});
 	hold = ft_substr(start + 1, 0, i - 1);
 	if (hold)
-		temp = ft_addmidstr(start, env_already_exist(hold, mini), i, mini);
+		temp = ft_addmidstr(start, find_env_variable(hold, mini), i, mini);
 	free(hold);
 	*start = '\0';
 	start = ft_strjoin(quote, temp);

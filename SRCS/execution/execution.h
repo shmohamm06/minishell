@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 10:54:32 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 13:02:16 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:07:38 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,30 @@
 void	parse_input(t_mini *mini);
 
 // check_exec_dir.c
-int		is_directory(const char *path);
-int		file_exists(const char *pathname);
-int		dot_dir_check(t_cmd *cmd);
+int		is_path_directory(const char *path);
+int		does_file_exist(const char *pathname);
+int		handle_dot_command_check(t_cmd *cmd);
 
 // design.c
-char	*read_line_colored(int random);
-char	*read_line_colored2(int random, char *path);
+char	*read_line_colored(void);
 
 // dups.c
-int		ft_dup2_output(t_rdr *rdr);
-int		ft_dup2_input(t_rdr *rdr);
-int		ft_dup2_append(t_rdr *rdr);
-int		parse_dups(t_rdr *trdr, t_mini *mini, t_cmd *cmd);
+int		duplicate_output_fd(t_rdr *rdr);
+int		duplicate_input_fd(t_rdr *rdr);
+int		duplicate_append_fd(t_rdr *rdr);
+int		parse_redirections(t_rdr *trdr, t_mini *mini, t_cmd *cmd);
 
 // env_conv.c
-void	*perror_return(char *str, void *ret);
-int		return_env_size(t_env *env);
-char	*join_key_val(char *key, char *value);
-char	*join_key_eq(char *key, t_env *env);
-char	**convert_env(t_mini *mini);
+void	*print_error_return(char *str, void *ret);
+int		get_env_size(t_env *env);
+char	*join_key_value(char *key, char *value);
+char	*join_key_only(char *key, t_env *env);
+char	**convert_env_to_array(t_mini *mini);
 
 // execution_utils.c
-int		is_slash_exec(t_mini *mini, t_cmd *cmd);
-void	execute_in_dir(t_mini *mini, t_cmd *cmd);
-void	execute_command_fork(t_mini *mini, t_cmd *cmd, char *cmd_path);
+int		check_executable_slash(t_mini *mini, t_cmd *cmd);
+void	execute_in_directory(t_mini *mini, t_cmd *cmd);
+void	execute_command_with_forking(t_mini *mini, t_cmd *cmd, char *cmd_path);
 void	execute_pathed_cmd(t_mini *mini, t_cmd *cmd);
 
 // fd_ handler.c

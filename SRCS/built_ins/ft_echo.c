@@ -6,15 +6,15 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:12 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:54 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:56:01 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "built_ins.h"
 #include "../execution/execution.h"
+#include "built_ins.h"
 
-void	print_echo(char **args, int flag)
+void	print_echo_arguments(char **args, int flag)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ void	print_echo(char **args, int flag)
 		fd_printf(1, "\n");
 }
 
-int	check_n_options(char *arg, int *flag)
+int	is_n_option(char *arg, int *flag)
 {
 	int		i;
 	size_t	counter;
@@ -55,14 +55,14 @@ int	check_n_options(char *arg, int *flag)
 	return (0);
 }
 
-char	**trim_echo_args(char **args, int *flag)
+char	**trim_echo_options(char **args, int *flag)
 {
 	int	i;
 
 	i = 0;
 	while (args[i] != NULL)
 	{
-		if (check_n_options(args[i], flag))
+		if (is_n_option(args[i], flag))
 			i++;
 		else
 			return (&args[i]);
@@ -89,7 +89,7 @@ void	ft_echo(char **args)
 		g_exit_code = SUCCESS;
 		return ;
 	}
-	args = trim_echo_args(args, &flag);
-	print_echo(args, flag);
+	args = trim_echo_options(args, &flag);
+	print_echo_arguments(args, flag);
 	g_exit_code = SUCCESS;
 }

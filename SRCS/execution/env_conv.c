@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:05:22 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:03:10 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,38 @@
 #include "../built_ins/built_ins.h"
 #include "execution.h"
 
-// prints the error message to STD ERROR
-// passed and returns ret (mainly ret is NULL)
-void	*perror_return(char *str, void *ret)
+
+void	*print_error_return(char *str, void *ret)
 {
 	fd_printf(2, "%s", str);
 	return (ret);
 }
 
-// returns size of linked list
-int	return_env_size(t_env *env)
+int	get_env_size(t_env *env)
 {
-	int	i;
+	int	size;
 
-	i = 0;
+	size = 0;
 	while (env)
 	{
 		env = env->next;
-		i++;
+		size++;
 	}
-	return (i);
+	return (size);
 }
 
-// joins the key in t_env with =
-// and then joins it with the value
-// needs memory freeing management
-char	*join_key_val(char *key, char *value)
+char	*join_key_value(char *key, char *value)
 {
-	char	*str;
-	char	*tmp;
+	char	*result;
+	char	*joined;
 
-	str = ft_strjoin(key, "=");
-	tmp = str;
-	str = ft_strjoin(str, value);
-	free(tmp);
-	return (str);
+	result = ft_strjoin(key, "=");
+	joined = ft_strjoin(result, value);
+	free(result);
+	return (joined);
 }
 
-// joins key with equals and does
-// nothing more, it's only called
-// if t_env->value is NULL
-char	*join_key_eq(char *key, t_env *env)
+char	*join_key_only(char *key, t_env *env)
 {
 	char	*str;
 
@@ -64,30 +55,31 @@ char	*join_key_eq(char *key, t_env *env)
 	return (str);
 }
 
-char	**convert_env(t_mini *mini)
+char	**convert_env_to_array(t_mini *mini)
 {
 	t_env	*env;
-	char	**s_env;
-	int		i;
+	int		size;
+	char	**env_array;
+	int		index;
 
 	env = mini->l_env;
 	if (!env)
 		return (NULL);
-	i = return_env_size(env);
-	s_env = ft_calloc(sizeof(char *), i + 1);
-	i = 0;
-	while (env != NULL)
+	size = get_env_size(env);
+	env_array = ft_calloc(size + 1, sizeof(char *));
+	index = 0;
+	while (env)
 	{
-		if (env->initialised == true)
+		if (env->initialised)
 		{
 			if (env->value == NULL)
-				s_env[i] = join_key_eq(env->key, env);
+				env_array[index] = join_key_only(env->key, env);
 			else
-				s_env[i] = join_key_val(env->key, env->value);
-			i++;
+				env_array[index] = join_key_value(env->key, env->value);
+			index++;
 		}
 		env = env->next;
 	}
-	s_env[i] = NULL;
-	return (s_env);
+	env_array[index] = NULL;
+	return (env_array);
 }

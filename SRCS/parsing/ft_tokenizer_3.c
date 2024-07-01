@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:05:37 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 16:59:35 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:57:13 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_expandvar(t_mini *mini)
 	{
 		if (current->type == VARIABLE)
 		{
-			l_env = env_already_exist(current->content + 1, mini);
+			l_env = find_env_variable(current->content + 1, mini);
 			current->content[0] = '\0';
 			if ((l_env && l_env->initialised) || *(current->content + 1) == '?')
 			{

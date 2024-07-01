@@ -6,21 +6,21 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:07 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:52 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:55:20 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "built_ins.h"
 #include "../execution/execution.h"
+#include "built_ins.h"
 
-void	go_to_home(t_mini *mini, char *old_pwd)
+void	change_to_home_directory(t_mini *mini, char *old_pwd)
 {
 	char	*path;
 	int		i;
 
 	i = 42;
-	path = find_str_env("HOME", mini, VALUE);
+	path = get_env_value_or_key("HOME", mini, VALUE);
 	if (!path)
 	{
 		fd_printf(2, "minishell: cd: HOME not set\n");
@@ -34,37 +34,37 @@ void	go_to_home(t_mini *mini, char *old_pwd)
 		g_exit_code = CD_FAIL;
 		return ;
 	}
-	cd_return_success(mini, old_pwd);
+	handle_cd_success(mini, old_pwd);
 }
 
-void	go_to_old_pwd(t_mini *mini, char *old_pwd)
+void	change_to_old_directory(t_mini *mini, char *old_pwd)
 {
-	int		i;
+	int	i;
 
 	i = 42;
-	if (find_str_env("OLDPWD", mini, KEY) == NULL)
+	if (get_env_value_or_key("OLDPWD", mini, KEY) == NULL)
 	{
 		fd_printf(2, "OLDPWD not set\n");
 		g_exit_code = CD_FAIL;
 		return ;
 	}
-	i = chdir(find_str_env("OLDPWD", mini, VALUE));
+	i = chdir(get_env_value_or_key("OLDPWD", mini, VALUE));
 	if (i)
 	{
-		fd_printf(2, "minishell: cd: %s: %s\n",
-			find_str_env("OLDPWD", mini, VALUE), strerror(errno));
+		fd_printf(2, "minishell: cd: %s: %s\n", get_env_value_or_key("OLDPWD",
+					mini, VALUE), strerror(errno));
 		g_exit_code = CD_FAIL;
 		return ;
 	}
-	fd_printf(1, "%s\n", find_str_env("OLDPWD", mini, VALUE));
-	cd_return_success(mini, old_pwd);
+	fd_printf(1, "%s\n", get_env_value_or_key("OLDPWD", mini, VALUE));
+	handle_cd_success(mini, old_pwd);
 }
 
 // ft_cd takes you to the path of the directory passed to cd command
 // cd .. and cd . are handeled by chdir
-// cd with no args is not handeled by chdir so go_to_home function
+// cd with no args is not handeled by chdir so change_to_home_directory function
 // handles it by looking for HOME in the env
-// cd - takes you to old directory by using a function 
+// cd - takes you to old directory by using a function
 // from ft_export called parse_new_export
 void	ft_cd(char **args, t_mini *mini)
 {
@@ -76,12 +76,12 @@ void	ft_cd(char **args, t_mini *mini)
 	old_pwd = getcwd(cwd, sizeof(cwd));
 	if (!args[0])
 	{
-		go_to_home (mini, old_pwd);
+		change_to_home_directory(mini, old_pwd);
 		return ;
 	}
 	if (ft_strncmp(args[0], "-", 2) == 0)
 	{
-		go_to_old_pwd(mini, old_pwd);
+		change_to_old_directory(mini, old_pwd);
 		return ;
 	}
 	i = chdir(args[0]);
@@ -91,5 +91,5 @@ void	ft_cd(char **args, t_mini *mini)
 		g_exit_code = CD_FAIL;
 		return ;
 	}
-	cd_return_success(mini, old_pwd);
+	handle_cd_success(mini, old_pwd);
 }

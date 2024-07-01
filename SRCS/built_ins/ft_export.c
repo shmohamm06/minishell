@@ -6,18 +6,18 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/06/25 11:07:56 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:57:39 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-#include "built_ins.h"
 #include "../execution/execution.h"
+#include "built_ins.h"
 
-// place holder for check_valid_identifer function
-int	check_export_args(char *arg)
+// Placeholder for checking if the export argument is valid.
+int	is_valid_export_arg(char *arg)
 {
-	if (!arg || !arg[0] || check_valid_identifier(arg))
+	if (!arg || !arg[0] || !is_valid_identifier(arg))
 	{
 		g_exit_code = EXPORT_FLAG;
 		return (1);
@@ -25,73 +25,64 @@ int	check_export_args(char *arg)
 	return (0);
 }
 
-// checks if the export key exists and if it does it returns 1
-t_env	*env_already_exist(char *arg, t_mini *mini)
+// Checks if an environment variable already exists by key.
+t_env	*find_env_variable(char *arg, t_mini *mini)
 {
+	size_t	len;
 	t_env	*temp;
-	size_t	i;
 
-	i = 0;
-	while (arg[i] != '\0' && arg[i] != '=')
-		i++;
+	len = 0;
+	while (arg[len] != '\0' && arg[len] != '=')
+		len++;
 	temp = mini->l_env;
 	while (temp)
 	{
-		if (0 == ft_strncmp(temp->key, arg, i)
-			&& ft_strlen(temp->key) == i)
+		if (0 == ft_strncmp(temp->key, arg, len) && ft_strlen(temp->key) == len)
 			return (temp);
 		temp = temp->next;
 	}
 	return (NULL);
 }
 
-// after validating that the env variable already exists,
-// it looks for the node with the key and modifies it if
-// there is '=' or else it just returns
-void	ft_modify_env(char *arg, t_mini *mini)
+// Modifies an existing environment variable with new value.
+void	update_env_variable(char *arg, t_mini *mini)
 {
+	char	*new_value;
+	size_t	len;
 	t_env	*temp;
-	char	*new_key;
-	size_t	i;
 
-	new_key = ft_strchr(arg, '=');
-	if (new_key == NULL)
+	new_value = ft_strchr(arg, '=');
+	if (new_value == NULL)
 		return ;
-	i = 0;
-	while (arg[i] && arg[i] != '=')
-		i++;
+	len = 0;
+	while (arg[len] && arg[len] != '=')
+		len++;
 	temp = mini->l_env;
 	while (temp)
 	{
-		if (0 == ft_strncmp(temp->key, arg, i)
-			&& ft_strlen(temp->key) == i)
+		if (0 == ft_strncmp(temp->key, arg, len) && ft_strlen(temp->key) == len)
 			break ;
 		temp = temp->next;
 	}
-	free (temp->value);
-	new_key++;
+	free(temp->value);
+	new_value++;
 	temp->initialised = true;
-	temp->value = ft_strdup(new_key);
+	temp->value = ft_strdup(new_value);
 }
 
-// checks if the export argument already exists as key or
-// it should be added
+// Parses and adds or modifies an environment variable.
 void	parse_new_export(char *arg, t_mini *mini)
 {
-	if (!env_already_exist(arg, mini))
-		add_to_env(arg, mini);
+	if (!find_env_variable(arg, mini))
+		add_env_variable(arg, mini);
 	else
-		ft_modify_env(arg, mini);
+		update_env_variable(arg, mini);
 }
 
-// if there are no arguemnts passed then it only prints
-// the env variables whether initialised or not
-// and if there are arguemnts it loops to each one
-// and checks for validity, if it is not valid it
-// skips the argument and moves to the next one
+// Handles exporting environment variables.
 void	ft_export(char **args, t_mini *mini)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	if (!mini->l_env)
@@ -101,12 +92,12 @@ void	ft_export(char **args, t_mini *mini)
 	}
 	if (!args[0])
 	{
-		print_export(mini);
+		print_export_list(mini);
 		return ;
 	}
 	while (args[++i] != NULL)
 	{
-		if (check_export_args(args[i]))
+		if (is_valid_export_arg(args[i]))
 			fd_printf(2, "minishell: export: `%s': not a valid identifier\n",
 				args[i]);
 		else
