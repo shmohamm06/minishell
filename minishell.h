@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/02 17:26:55 by fmaqdasi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -164,6 +153,7 @@ void					init_signals(void);
 void 					minishell_prompt(void);
 void 					signal_handler_parent(int signum);
 void 					handle_heredoc(void);
+void 					shit(int signum);
 
 
 

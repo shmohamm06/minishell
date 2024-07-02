@@ -69,8 +69,15 @@ void signal_handler_parent(int signum)
     }
 }
 
+
+void shit(int signum) 
+{
+    NULL;
+    (void)signum;
+}
 void init_signals(void)
 {
     signal(SIGINT, signal_handler_parent);
-    signal(SIGQUIT, signal_handler_parent);
+    signal(SIGQUIT, SIG_IGN);
+
 }
