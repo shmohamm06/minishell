@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyaseen <wyaseen@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: fmaqdasi <fmaqdasi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:50:59 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 20:21:08 by wyaseen          ###   ########.fr       */
+/*   Updated: 2024/07/02 17:26:55 by fmaqdasi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@
 # define GREEN 4
 # define PURPLE 5
 # define DARK_CYAN 6
+
+extern int	g_exit_code;
+
 
 // redirections enumiration
 enum					e_rdr
@@ -215,7 +218,7 @@ void					expand_variables(t_mini *mini);
 
 // global exit code
 
-int						g_exit_code;
+// int						g_exit_code;
 
 // void	exit_and_print(int code);
 // void	exit_success(char **args, t_mini *mini);
