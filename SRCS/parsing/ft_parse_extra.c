@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 12:55:06 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 15:24:13 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:03:22 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	collapse_quotes(t_mini *mini)
 		if (current->type == SINGLE || current->type == DOUBLE)
 		{
 			ft_memmove(current->content, current->content + 1,
-					(ft_strlen(current->content) - 2));
+				(ft_strlen(current->content) - 2));
 			current->content[ft_strlen(current->content) - 2] = '\0';
 			if (current->type == DOUBLE)
 				while (ft_strchr(current->content, '$'))
@@ -86,7 +86,7 @@ void	process_tokens(t_token *head, char ***result, size_t *i)
 			if (current->prev && current->prev->type == WORD
 				&& current->type != REDIRECTION && current->type != PIPE)
 				(*result)[*i - 1] = ft_strjoin_free((*result)[*i - 1],
-													current->content);
+						current->content);
 			else
 			{
 				*result = ft_realloc(*result, sizeof(char *) * (*i + 2),

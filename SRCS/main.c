@@ -8,8 +8,11 @@ void take_input(t_mini *mini)
     g_exit_code = -1; // Initialize to prompt state
 
     while (1)
-    {
+    { 
+        // g_exit_code = -1;
         mini->rl = readline("➜  src ✗  "); // Simplified prompt for clarity
+        // if(g_exit_code == 22)
+        //     mini->rl = readline("➜  src ✗  "); // Simplified prompt for clarity
         if (mini->rl == NULL)
             exit_shell(mini, 0, "exit", 1);
         if (mini->rl[0] != '\0')
