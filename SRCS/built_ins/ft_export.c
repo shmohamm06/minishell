@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:22 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:37:08 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:03:06 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_export(char **args, t_mini *mini)
 	{
 		if (is_valid_export_arg(args[i]))
 			fd_printf(2, "minishell: export: `%s': not a valid identifier\n",
-					args[i]);
+				args[i]);
 		else
 			parse_new_export(args[i], mini);
 	}

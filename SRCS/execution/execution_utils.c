@@ -6,14 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:45:01 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:50:34 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:03:23 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
 #include "execution.h"
-
 
 int	check_executable_slash(t_mini *mini, t_cmd *cmd)
 {

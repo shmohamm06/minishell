@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/09 12:00:38 by shmohamm          #+#    #+#             */
+/*   Updated: 2024/07/09 12:01:54 by shmohamm         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -18,8 +29,6 @@
 # include <sys/wait.h>
 # include <term.h>
 # include <termios.h>
-
-
 
 //	colors
 # define BLUE_FONT "\033[1;36m"
@@ -58,8 +67,7 @@
 # define PURPLE 5
 # define DARK_CYAN 6
 
-extern int	g_exit_code;
-
+extern int				g_exit_code;
 
 // redirections enumiration
 enum					e_rdr
@@ -147,18 +155,15 @@ typedef struct s_token_groups
 }						t_token_groups;
 
 // // signals.c
-void 					heredoc_prompt(void);
-void 					command_prompt(void);
+void					heredoc_prompt(void);
+void					command_prompt(void);
 void					init_signals(void);
-void 					minishell_prompt(void);
-void 					signal_handler_parent(int signum);
-void 					handle_heredoc(void);
-void 					shit(int signum);
-
-
+void					minishell_prompt(void);
+void					signal_handler_parent(int signum);
+void					handle_heredoc(void);
+void					shit(int signum);
 
 // parsing
-
 void					ft_tokenize(t_mini *mini);
 int						is_redirection(char *string);
 void					populate_cmd(t_mini *mini, t_cmd *cmd, char **token,
@@ -167,10 +172,8 @@ int						count_till_pipe(char **token);
 void					ft_parse_env(t_mini *mini, const char **envp);
 void					parse_tokens(t_mini *mini, char **token);
 void					set_env_var(char *cmd, t_mini *mini);
-void	concatenate_token(t_token_groups *groups,
-						t_token *current);
-void					print_token_groups(t_token_groups *groups);
-
+void					concatenate_token(t_token_groups *groups,
+							t_token *current);
 char					*ft_strjoin_free(char *s1, const char *s2);
 
 // frees
@@ -207,12 +210,4 @@ bool					evaluate_redirection(t_token *head, t_mini *mini);
 void					expand_variables(t_mini *mini);
 
 // global exit code
-
-// int						g_exit_code;
-
-// void	exit_and_print(int code);
-// void	exit_success(char **args, t_mini *mini);
-
-// int		handle_error_set_print_close(t_mini *mini, t_cmd *cmd, int error);
-
 #endif

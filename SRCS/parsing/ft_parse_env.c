@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:52:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 15:36:47 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:08:28 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	increment_shlvl(t_env *env)
 	}
 	if (!found)
 		add_shlvl_var(env);
-	else
-		fd_printf(1, "SHLVL increased to %d\n", lvl);
 }
 
 char	**create_basic_env(t_mini *mini)

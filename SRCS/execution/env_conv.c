@@ -6,14 +6,13 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:44:45 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 14:03:10 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:03:35 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 #include "../built_ins/built_ins.h"
 #include "execution.h"
-
 
 void	*print_error_return(char *str, void *ret)
 {

@@ -6,7 +6,7 @@
 /*   By: shmohamm <shmohamm@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:46:07 by shmohamm          #+#    #+#             */
-/*   Updated: 2024/07/01 13:55:20 by shmohamm         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:03:44 by shmohamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	change_to_old_directory(t_mini *mini, char *old_pwd)
 	if (i)
 	{
 		fd_printf(2, "minishell: cd: %s: %s\n", get_env_value_or_key("OLDPWD",
-					mini, VALUE), strerror(errno));
+				mini, VALUE), strerror(errno));
 		g_exit_code = CD_FAIL;
 		return ;
 	}
